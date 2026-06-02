@@ -32,6 +32,26 @@ body{background:
   min-height:100vh;padding-bottom:80px}
 .wrap{max-width:1000px;margin:0 auto;padding:0 18px}
 
+/* ===== 로그인 오버레이 ===== */
+#login-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: var(--bg); z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.login-box {
+  background: var(--panel); padding: 40px; border-radius: 16px; border: 1px solid var(--line);
+  text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8); width: 90%; max-width: 400px;
+}
+.login-input {
+  width: 100%; padding: 14px; margin-bottom: 16px; border-radius: 10px; outline: none;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink); font-size: 16px; font-family: inherit;
+}
+.login-input:focus { border-color: var(--mint); }
+.study-timer {
+  display: inline-block; margin-top: 15px; font-size: 14px; font-weight: 700; color: var(--mint);
+  background: rgba(79, 214, 184, 0.1); padding: 6px 16px; border-radius: 20px; border: 1px solid rgba(79, 214, 184, 0.3);
+}
+
 /* Header */
 header.top{padding:34px 0 14px;text-align:center}
 .brand{font-family:'Fraunces',serif;font-weight:900;font-size:13px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase}
@@ -74,17 +94,20 @@ section.view.active{display:block;animation:fade .35s ease}
 .pill{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
 
 /* ===== FLASHCARD (Quizlet style) ===== */
-.fc-stage{perspective:1600px;margin:10px auto 0;max-width:620px}
-.flashcard{position:relative;width:100%;height:300px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1);cursor:pointer}
+.fc-stage{perspective:1600px;margin:10px auto 0;max-width:700px} /* 카드 폭 확장 */
+.flashcard{position:relative;width:100%;height:380px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1);cursor:pointer} /* 높이 확장 */
 .flashcard.flipped{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;border:1px solid var(--line)}
 .face .lab{position:absolute;top:16px;left:20px;font-size:11px;letter-spacing:.2em;font-weight:800;color:var(--muted);text-transform:uppercase}
 .fc-li .sp{cursor:pointer;transition:.15s}
 .fc-li .sp:hover{color:var(--gold)}
 .face.front{background:linear-gradient(160deg,var(--panel2),var(--panel))}
-.face.front .term{font-family:'Fraunces',serif;font-size:clamp(30px,6vw,52px);font-weight:900;text-align:center}
+/* 앞면 폰트 사이즈 키움 */
+.face.front .term{font-family:'Fraunces',serif;font-size:clamp(36px,7vw,64px);font-weight:900;text-align:center}
 .face.back{background:linear-gradient(160deg,#1b2a26,#15201d);transform:rotateY(180deg)}
-.face.back .mean{font-size:clamp(22px,5vw,36px);font-weight:700;text-align:center;color:var(--mint);font-family:'Malgun Gothic','맑은 고딕',sans-serif}
+/* 뒷면 폰트는 앞면보다 2pt 작게 설정 */
+.face.back .mean{font-size:calc(clamp(36px,7vw,64px) - 2pt);font-weight:700;text-align:center;color:var(--mint);font-family:'Malgun Gothic','맑은 고딕',sans-serif}
+
 .fc-bar{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:12px}
 .fc-count{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:14px}
 .fc-nav{display:flex;gap:10px}
@@ -123,11 +146,15 @@ section.view.active{display:block;animation:fade .35s ease}
 .fc-stat .box b{display:block;font-family:'JetBrains Mono',monospace;font-size:26px}
 .fc-stat .box span{font-size:11px;color:var(--muted)}
 .fc-stat .box.l b{color:var(--rose)} .fc-stat .box.u b{color:var(--blue)} .fc-stat .box.r b{color:var(--ok)}
-.fc-list{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* 2열 단어장 가독성 향상 처리 */
+.fc-list{margin-top:22px;display:grid;grid-template-columns:repeat(2, 1fr);gap:12px}
 @media(max-width:640px){.fc-list{grid-template-columns:1fr}}
-.fc-li{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;font-size:14px}
-.fc-li b{font-family:'Fraunces',serif;font-weight:600}
-.fc-li span{color:var(--mint)}
+.fc-li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;font-size:15px; transition:.2s;}
+.fc-li:hover{border-color:var(--gold); transform:translateY(-1px);}
+.fc-li b{font-family:'Fraunces',serif;font-weight:600; flex:1;}
+.fc-li .sep{color:var(--muted); margin: 0 10px;}
+.fc-li span{color:var(--mint); flex:1; text-align:right;}
 
 /* ===== 직독직해 ===== */
 .dd-sent{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
@@ -223,139 +250,252 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:40px 0 10px;m
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="brand">미사이든학원 · 이든관리형학습센터</div>
-  <h1>A Game Changer</h1>
-  <p>고2 영어 YBM(민) Lesson 3 · Using Data in Sports</p>
-  <div class="divider"></div>
-</header>
 
-<nav class="tabs">
-  <div class="tabs-inner">
-    <button class="tab active" data-v="vocab">🃏 단어 카드</button>
-    <button class="tab" data-v="dd">📖 직독직해 게임</button>
-    <button class="tab" data-v="write">✍️ 영작</button>
-    <button class="tab" data-v="gram">🎮 문법 게임</button>
-    <button class="tab" data-v="var">📝 변형문제</button>
+<div id="login-overlay">
+  <div class="login-box">
+    <h2 style="color:var(--gold); margin-bottom: 20px; font-family:'Fraunces',serif;">STUDY LOGIN</h2>
+    <p id="loading-msg" style="color:var(--muted); margin-bottom:15px;">인증 데이터를 불러오는 중...</p>
+    
+    <div id="welcome-msg" style="display:none; color:var(--ink); font-size:18px; margin-bottom:20px; font-weight:700;"></div>
+    
+    <input type="text" id="login-name" class="login-input" placeholder="이름" style="display:none;">
+    <input type="password" id="login-pw" class="login-input" placeholder="비밀번호" style="display:none;">
+    
+    <button id="login-btn" class="btn mint" style="width:100%; font-size:16px; padding:14px; display:none;" disabled>학습 시작하기</button>
+    <button id="btn-change-user" class="btn ghost" style="width:100%; margin-top:10px; display:none; border:none; color:var(--muted); text-decoration:underline;">다른 이름으로 로그인</button>
   </div>
-</nav>
-
-<div class="wrap">
-
-<!-- ===================== VOCAB ===================== -->
-<section class="view active" id="v-vocab">
-  <div class="shead"><div class="n">01</div><div><h2>단어 1차 학습</h2><p>뜻이 떠오르는 속도로 분류 → 3회 반복</p></div></div>
-
-  <!-- 시작 화면 -->
-  <div class="card" id="fcIntro">
-    <p style="color:var(--muted);line-height:1.8;margin-bottom:16px">
-      단어를 보고 <b style="color:var(--ink)">뒤집어 확인</b>한 뒤, 떠오른 속도에 따라 분류하세요.<br>
-      이 과정을 <b style="color:var(--gold)">3회 반복</b>하면서 모르는 단어를 집중적으로 익힙니다.</p>
-    <div class="fc-guide">
-      <div class="fc-guide-row"><span class="fc-dir left">⬅️ 왼쪽</span><span>틀렸거나 모름 / 아는데 생각이 안 남</span></div>
-      <div class="fc-guide-row"><span class="fc-dir up">⬆️ 위쪽</span><span>잠시 후(3초 내)에 떠오름</span></div>
-      <div class="fc-guide-row"><span class="fc-dir right">➡️ 오른쪽</span><span>보자마자(0.5초) 바로 떠오름</span></div>
-    </div>
-    <div class="fc-modes" style="margin-top:18px">
-      <button class="btn gold" id="fcDirEK" data-dir="ek">영어 → 한글</button>
-      <button class="btn ghost" id="fcDirKE" data-dir="ke">한글 → 영어</button>
-    </div>
-    <button class="btn gold" id="fcBegin" style="margin-top:8px">🎯 1차 학습 시작 (전체 60단어)</button>
-  </div>
-
-  <!-- 학습 화면 -->
-  <div id="fcPlay" style="display:none">
-    <div class="fc-roundbar">
-      <span class="pill" id="fcRound">1회차 / 3회</span>
-      <span class="fc-count" id="fcCount">1 / 60</span>
-      <span class="pill" id="fcTally">⬅️ 0 · ⬆️ 0 · ➡️ 0</span>
-    </div>
-    <div class="progress"><i id="fcProg"></i></div>
-    <div class="fc-stage">
-      <div class="flashcard" id="flashcard">
-        <div class="face front"><span class="lab" id="fcLabF">ENGLISH</span><div class="term" id="fcTerm">famous</div></div>
-        <div class="face back"><span class="lab">한글 뜻</span><div class="mean" id="fcMean">유명한</div></div>
-      </div>
-    </div>
-    <p class="fc-hint" id="fcFlipHint">👆 카드를 클릭해 뜻을 확인하세요</p>
-    <div class="fc-dropguide" id="fcDropGuide" style="display:none">
-      <span class="drop-zone left">⬅️ 모름</span>
-      <span class="drop-zone up">⬆️ 잠시 후</span>
-      <span class="drop-zone right">바로 떠오름 ➡️</span>
-    </div>
-    <p class="fc-hint" id="fcDragHint" style="display:none">카드를 잡아서 ⬅️왼쪽(모름) · ⬆️위(잠시 후) · ➡️오른쪽(바로)으로 밀어 보내세요</p>
-    <p class="fc-hint">키보드: ← (모름) · ↑ (잠시 후) · → (바로) · 스페이스(뒤집기)</p>
-  </div>
-
-  <!-- 라운드 결과 화면 -->
-  <div id="fcResult" style="display:none"></div>
-
-  <div class="fc-list" id="fcList"></div>
-</section>
-
-<!-- ===================== 직독직해 ===================== -->
-<section class="view" id="v-dd">
-  <div class="shead"><div class="n">02</div><div><h2>직독직해</h2><p>문장 단위 · 의미 단위(/)로 끊어 읽기 · 클릭하면 숨겨진 쪽이 보입니다</p></div></div>
-  <div class="passage-pick" id="ddPick"></div>
-  <div class="dd-mode">
-    <button class="btn violet" data-ddm="en2ko">영어 보고 → 해석 맞히기</button>
-    <button class="btn ghost" data-ddm="ko2en">한글 보고 → 영어 맞히기</button>
-    <button class="btn ghost" data-ddm="all">전체 보기</button>
-  </div>
-  <div class="dd-legend" id="ddLegend">💡 의미 단위별로 영어와 해석이 위아래로 짝지어 있습니다. 가려진 칸(회색 글씨)을 클릭하면 내용이 나타나고, 영어를 클릭하면 발음이 나옵니다. 🔊</div>
-  <div id="ddBody"></div>
-</section>
-
-<!-- ===================== 영작 ===================== -->
-<section class="view" id="v-write">
-  <div class="shead"><div class="n">03</div><div><h2>전체 지문 영작</h2><p>한글 → 영어 · 세 가지 방식으로 연습</p></div></div>
-  <div class="wr-mode">
-    <button class="btn gold" data-wm="scramble">🧩 단어 배열</button>
-    <button class="btn ghost" data-wm="hint">💡 힌트 영작</button>
-    <button class="btn ghost" data-wm="type">⌨️ 직접 영작</button>
-  </div>
-  <div class="passage-pick" id="wrPick"></div>
-  <div id="wrBody"></div>
-</section>
-
-<!-- ===================== 문법 게임 ===================== -->
-<section class="view" id="v-gram">
-  <div class="shead"><div class="n">04</div><div><h2>문법 게임</h2><p>시험 대비 퀴즈 · 수동태 / to부정사 / 관계대명사 / 접속사 / 분사</p></div></div>
-  <div class="card" id="gramHome">
-    <p style="color:var(--muted);margin-bottom:16px">Lesson 3 핵심 문법 <b style="color:var(--ink)" id="gramTotal">20</b>문제. 객관식으로 풀고 즉시 해설을 확인하세요. 틀린 문제는 마지막에 다시 복습할 수 있습니다.</p>
-    <div class="row">
-      <button class="btn violet" id="gramStart">🎮 게임 시작</button>
-      <button class="btn ghost" id="gramByType">유형별 보기</button>
-    </div>
-  </div>
-  <div id="gramPlay" style="display:none">
-    <div class="gm-score">
-      <div class="box"><b id="gsScore">0</b><span>점수</span></div>
-      <div class="box"><b id="gsStreak">0</b><span>연속 정답</span></div>
-      <div class="box"><b id="gsNum">1/20</b><span>진행</span></div>
-    </div>
-    <div id="gramQ"></div>
-    <div class="row" style="justify-content:flex-end;margin-top:10px">
-      <button class="btn gold" id="gramNext" style="display:none">다음 →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 변형문제 ===================== -->
-<section class="view" id="v-var">
-  <div class="shead"><div class="n">05</div><div><h2>변형문제</h2><p>지문별 5문항 · 내신 서술형·객관식 출제 유형</p></div></div>
-  <div class="passage-pick" id="vtPick"></div>
-  <div id="vtBody"></div>
-</section>
-
 </div>
 
-<footer>
-  미사이든학원 · 이든관리형학습센터 &nbsp;|&nbsp; The 8 Pillars 학습 시스템<br>
-  <span class="sig">원장 황붕주</span>
-</footer>
+<div id="app-container" style="display:none;">
+  <header class="top">
+    <div class="brand">미사이든학원 · 이든관리형학습센터</div>
+    <h1>A Game Changer</h1>
+    <p>고2 영어 YBM(민) Lesson 3 · Using Data in Sports</p>
+    <div id="study-timer" class="study-timer">이번 학습: 0분 0초 | 누적 학습: 0분 0초</div>
+    <div class="divider"></div>
+  </header>
+
+  <nav class="tabs">
+    <div class="tabs-inner">
+      <button class="tab active" data-v="vocab">🃏 단어 카드</button>
+      <button class="tab" data-v="dd">📖 직독직해 게임</button>
+      <button class="tab" data-v="write">✍️ 영작</button>
+      <button class="tab" data-v="gram">🎮 문법 게임</button>
+      <button class="tab" data-v="var">📝 변형문제</button>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+  <section class="view active" id="v-vocab">
+    <div class="shead"><div class="n">01</div><div><h2>단어 1차 학습</h2><p>뜻이 떠오르는 속도로 분류 → 3회 반복</p></div></div>
+
+    <div class="card" id="fcIntro">
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:16px">
+        단어를 보고 <b style="color:var(--ink)">뒤집어 확인</b>한 뒤, 떠오른 속도에 따라 분류하세요.<br>
+        이 과정을 <b style="color:var(--gold)">3회 반복</b>하면서 모르는 단어를 집중적으로 익힙니다.</p>
+      <div class="fc-guide">
+        <div class="fc-guide-row"><span class="fc-dir left">⬅️ 왼쪽</span><span>틀렸거나 모름 / 아는데 생각이 안 남</span></div>
+        <div class="fc-guide-row"><span class="fc-dir up">⬆️ 위쪽</span><span>잠시 후(3초 내)에 떠오름</span></div>
+        <div class="fc-guide-row"><span class="fc-dir right">➡️ 오른쪽</span><span>보자마자(0.5초) 바로 떠오름</span></div>
+      </div>
+      <div class="fc-modes" style="margin-top:18px">
+        <button class="btn gold" id="fcDirEK" data-dir="ek">영어 → 한글</button>
+        <button class="btn ghost" id="fcDirKE" data-dir="ke">한글 → 영어</button>
+      </div>
+      <button class="btn gold" id="fcBegin" style="margin-top:8px">🎯 1차 학습 시작 (전체 60단어)</button>
+    </div>
+
+    <div id="fcPlay" style="display:none">
+      <div class="fc-roundbar">
+        <span class="pill" id="fcRound">1회차 / 3회</span>
+        <span class="fc-count" id="fcCount">1 / 60</span>
+        <span class="pill" id="fcTally">⬅️ 0 · ⬆️ 0 · ➡️ 0</span>
+      </div>
+      <div class="progress"><i id="fcProg"></i></div>
+      <div class="fc-stage">
+        <div class="flashcard" id="flashcard">
+          <div class="face front"><span class="lab" id="fcLabF">ENGLISH</span><div class="term" id="fcTerm">famous</div></div>
+          <div class="face back"><span class="lab">한글 뜻</span><div class="mean" id="fcMean">유명한</div></div>
+        </div>
+      </div>
+      <p class="fc-hint" id="fcFlipHint">👆 카드를 클릭해 뜻을 확인하세요</p>
+      <div class="fc-dropguide" id="fcDropGuide" style="display:none">
+        <span class="drop-zone left">⬅️ 모름</span>
+        <span class="drop-zone up">⬆️ 잠시 후</span>
+        <span class="drop-zone right">바로 떠오름 ➡️</span>
+      </div>
+      <p class="fc-hint" id="fcDragHint" style="display:none">카드를 잡아서 ⬅️왼쪽(모름) · ⬆️위(잠시 후) · ➡️오른쪽(바로)으로 밀어 보내세요</p>
+      <p class="fc-hint">키보드: ← (모름) · ↑ (잠시 후) · → (바로) · 스페이스(뒤집기)</p>
+    </div>
+
+    <div id="fcResult" style="display:none"></div>
+
+    <div class="fc-list" id="fcList"></div>
+  </section>
+
+  <section class="view" id="v-dd">
+    <div class="shead"><div class="n">02</div><div><h2>직독직해</h2><p>문장 단위 · 의미 단위(/)로 끊어 읽기 · 클릭하면 숨겨진 쪽이 보입니다</p></div></div>
+    <div class="passage-pick" id="ddPick"></div>
+    <div class="dd-mode">
+      <button class="btn violet" data-ddm="en2ko">영어 보고 → 해석 맞히기</button>
+      <button class="btn ghost" data-ddm="ko2en">한글 보고 → 영어 맞히기</button>
+      <button class="btn ghost" data-ddm="all">전체 보기</button>
+    </div>
+    <div class="dd-legend" id="ddLegend">💡 의미 단위별로 영어와 해석이 위아래로 짝지어 있습니다. 가려진 칸(회색 글씨)을 클릭하면 내용이 나타나고, 영어를 클릭하면 발음이 나옵니다. 🔊</div>
+    <div id="ddBody"></div>
+  </section>
+
+  <section class="view" id="v-write">
+    <div class="shead"><div class="n">03</div><div><h2>전체 지문 영작</h2><p>한글 → 영어 · 세 가지 방식으로 연습</p></div></div>
+    <div class="wr-mode">
+      <button class="btn gold" data-wm="scramble">🧩 단어 배열</button>
+      <button class="btn ghost" data-wm="hint">💡 힌트 영작</button>
+      <button class="btn ghost" data-wm="type">⌨️ 직접 영작</button>
+    </div>
+    <div class="passage-pick" id="wrPick"></div>
+    <div id="wrBody"></div>
+  </section>
+
+  <section class="view" id="v-gram">
+    <div class="shead"><div class="n">04</div><div><h2>문법 게임</h2><p>시험 대비 퀴즈 · 수동태 / to부정사 / 관계대명사 / 접속사 / 분사</p></div></div>
+    <div class="card" id="gramHome">
+      <p style="color:var(--muted);margin-bottom:16px">Lesson 3 핵심 문법 <b style="color:var(--ink)" id="gramTotal">20</b>문제. 객관식으로 풀고 즉시 해설을 확인하세요. 틀린 문제는 마지막에 다시 복습할 수 있습니다.</p>
+      <div class="row">
+        <button class="btn violet" id="gramStart">🎮 게임 시작</button>
+        <button class="btn ghost" id="gramByType">유형별 보기</button>
+      </div>
+    </div>
+    <div id="gramPlay" style="display:none">
+      <div class="gm-score">
+        <div class="box"><b id="gsScore">0</b><span>점수</span></div>
+        <div class="box"><b id="gsStreak">0</b><span>연속 정답</span></div>
+        <div class="box"><b id="gsNum">1/20</b><span>진행</span></div>
+      </div>
+      <div id="gramQ"></div>
+      <div class="row" style="justify-content:flex-end;margin-top:10px">
+        <button class="btn gold" id="gramNext" style="display:none">다음 →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-var">
+    <div class="shead"><div class="n">05</div><div><h2>변형문제</h2><p>지문별 5문항 · 내신 서술형·객관식 출제 유형</p></div></div>
+    <div class="passage-pick" id="vtPick"></div>
+    <div id="vtBody"></div>
+  </section>
+
+  </div>
+
+  <footer>
+    미사이든학원 · 이든관리형학습센터 &nbsp;|&nbsp; The 8 Pillars 학습 시스템<br>
+    <span class="sig">원장 황붕주</span>
+  </footer>
+</div>
 
 <script>
+/* ============== GOOGLE SHEETS LOGIN & TIMER ============== */
+const sheetId = '17ARTCYwJFKBGhZmtsHnyGxLce4Jl5wd9dRmvZFMTJhs';
+const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+let userCredentials = {};
+
+let sessionSeconds = 0;
+let cumulativeSeconds = 0;
+let timerInterval;
+
+async function initLogin() {
+    try {
+        const res = await fetch(csvUrl);
+        if (!res.ok) throw new Error('Network error');
+        const csv = await res.text();
+        
+        const rows = csv.split('\n');
+        for(let i=1; i<rows.length; i++) {
+            const cols = rows[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
+            if (cols.length >= 2 && cols[0]) {
+                userCredentials[cols[0]] = cols[1];
+            }
+        }
+        
+        document.getElementById('loading-msg').style.display = 'none';
+        
+        const savedName = localStorage.getItem('studyUserNameL3Data'); 
+        const loginNameInput = document.getElementById('login-name');
+        const loginPwInput = document.getElementById('login-pw');
+        const loginBtn = document.getElementById('login-btn');
+        const welcomeMsg = document.getElementById('welcome-msg');
+        const changeUserBtn = document.getElementById('btn-change-user');
+
+        loginPwInput.style.display = 'block';
+        loginBtn.style.display = 'block';
+        loginBtn.disabled = false;
+
+        if (savedName && userCredentials[savedName]) {
+            loginNameInput.style.display = 'none';
+            loginNameInput.value = savedName;
+            welcomeMsg.style.display = 'block';
+            welcomeMsg.innerText = `${savedName}님, 다시 오신 것을 환영합니다!`;
+            changeUserBtn.style.display = 'block';
+        } else {
+            loginNameInput.style.display = 'block';
+        }
+
+        changeUserBtn.onclick = () => {
+            localStorage.removeItem('studyUserNameL3Data');
+            loginNameInput.value = '';
+            loginNameInput.style.display = 'block';
+            welcomeMsg.style.display = 'none';
+            changeUserBtn.style.display = 'none';
+        };
+
+        loginBtn.onclick = () => {
+            const name = loginNameInput.value.trim();
+            const pw = loginPwInput.value.trim();
+            
+            if(!name) { alert("이름을 입력해주세요."); return; }
+            if(!pw) { alert("비밀번호를 입력해주세요."); return; }
+            
+            if(userCredentials[name] && userCredentials[name] === pw) {
+                localStorage.setItem('studyUserNameL3Data', name);
+                startApp(name);
+            } else {
+                alert("이름 또는 비밀번호가 일치하지 않습니다.");
+            }
+        };
+    } catch(e) {
+        console.error(e);
+        document.getElementById('loading-msg').innerText = "인증 데이터를 불러오지 못했습니다. 인터넷 연결 상태를 확인해주세요.";
+    }
+}
+
+function formatTime(totalSec) {
+    const h = Math.floor(totalSec / 3600);
+    const m = Math.floor((totalSec % 3600) / 60);
+    const s = totalSec % 60;
+    let res = '';
+    if(h > 0) res += `${h}시간 `;
+    if(m > 0 || h > 0) res += `${m}분 `;
+    res += `${s}초`;
+    return res;
+}
+
+function startApp(name) {
+    document.getElementById('login-overlay').style.display = 'none';
+    document.getElementById('app-container').style.display = 'block';
+    
+    cumulativeSeconds = parseInt(localStorage.getItem(`studyCumulSecL3Data_${name}`) || '0');
+    
+    timerInterval = setInterval(() => {
+        sessionSeconds++;
+        cumulativeSeconds++;
+        localStorage.setItem(`studyCumulSecL3Data_${name}`, cumulativeSeconds);
+        
+        document.getElementById('study-timer').innerText = `이번 학습: ${formatTime(sessionSeconds)} | 누적 학습: ${formatTime(cumulativeSeconds)}`;
+    }, 1000);
+}
+
+window.addEventListener('DOMContentLoaded', initLogin);
+
 /* ============== DATA ============== */
 const VOCAB = [
  ["industry","산업, 업계"],["shocked","충격받은"],["limited","제한된, 한정된"],["attract","끌어들이다"],
@@ -889,7 +1029,8 @@ document.addEventListener('keydown',e=>{
 });
 
 // list — 영단어를 클릭하면 발음
-document.getElementById('fcList').innerHTML=VOCAB.map(v=>`<div class="fc-li"><b class="sp" data-w="${v[0].replace(/"/g,'')}" title="클릭하면 발음">${v[0]}</b><span>${v[1]}</span></div>`).join('');
+document.getElementById('fcList').innerHTML=`<div style="grid-column: 1 / -1; text-align: center; margin-bottom: 10px;"><h3 style="color:var(--gold); font-size: 20px;">전체 단어장 (${VOCAB.length} 단어)</h3></div>` + 
+  VOCAB.map(v=>`<div class="fc-li"><b class="sp" data-w="${v[0].replace(/"/g,'')}" title="클릭하면 발음">${v[0]}</b><span class="sep">|</span><span>${v[1]}</span></div>`).join('');
 document.querySelectorAll('#fcList .sp').forEach(s=>s.onclick=()=>speak(s.dataset.w, null));
 
 /* ============== 직독직해 ============== */
@@ -904,10 +1045,6 @@ function renderDD(){
       `<div class="dd-para-title">${p.name} · ${p.title}</div>`+
       p.sentences.map((s,si)=>ddSentMarkup(p,s,si)).join('')
     ).join('');
-    PASSAGES.forEach(p=>{
-      // 각 단락 영역의 문장 노드에 해당 단락(p)으로 바인딩
-      // dd-sent는 단락 구분 없이 순서대로 있으므로, 단락별 문장 수만큼 끊어서 바인딩
-    });
     // 단락 경계에 맞춰 바인딩: 전체 노드를 단락 순서대로 매핑
     const nodes=[...body.querySelectorAll('.dd-sent')];
     let idx=0;
