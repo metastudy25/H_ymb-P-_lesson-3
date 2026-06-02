@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고2 영어 · YBM(민) Lesson 3 본문 학습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;
+  --panel:#161b28;
+  --panel2:#1c2333;
+  --ink:#e7ecf5;
+  --muted:#8a94a8;
+  --line:#2a3346;
+  --gold:#f5b942;
+  --mint:#4fd6b8;
+  --violet:#8b7cf6;
+  --rose:#ff6b8b;
+  --blue:#5aa9ff;
+  --ok:#3ddc97;
+  --bad:#ff5c6c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:
+  radial-gradient(1200px 600px at 80% -10%, rgba(139,124,246,.18), transparent 60%),
+  radial-gradient(900px 500px at -10% 20%, rgba(79,214,184,.12), transparent 55%),
+  var(--bg);
+  min-height:100vh;padding-bottom:80px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+
+/* Header */
+header.top{padding:34px 0 14px;text-align:center}
+.brand{font-family:'Fraunces',serif;font-weight:900;font-size:13px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase}
+header.top h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(28px,5vw,46px);line-height:1.05;margin:8px 0}
+header.top p{color:var(--muted);font-size:14px}
+.divider{width:60px;height:3px;background:var(--gold);margin:14px auto 0;border-radius:3px}
+
+/* Tabs */
+nav.tabs{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-top:18px}
+.tabs-inner{max-width:1000px;margin:0 auto;display:flex;gap:6px;padding:10px 12px;overflow-x:auto;scrollbar-width:none}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700;font-size:13px;transition:.18s;white-space:nowrap}
+.tab:hover{border-color:var(--gold);color:var(--ink)}
+.tab.active{background:linear-gradient(135deg,var(--gold),#ffce6b);color:#1a1300;border-color:transparent}
+
+section.view{display:none;padding-top:26px}
+section.view.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.shead{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.shead .n{font-family:'Fraunces',serif;font-weight:900;font-size:40px;color:var(--line);line-height:1}
+.shead h2{font-family:'Fraunces',serif;font-size:24px;font-weight:900}
+.shead p{color:var(--muted);font-size:13px;margin-top:3px}
+
+.passage-pick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pp{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-size:13px;transition:.15s}
+.pp:hover{color:var(--ink);border-color:var(--mint)}
+.pp.active{background:var(--mint);color:#04231c;border-color:transparent}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.btn{border:none;border-radius:10px;padding:11px 18px;font-weight:800;cursor:pointer;font-size:14px;font-family:inherit;transition:.15s}
+.btn.gold{background:var(--gold);color:#1a1300}
+.btn.mint{background:var(--mint);color:#04231c}
+.btn.violet{background:var(--violet);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn:active{transform:none}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+
+/* ===== FLASHCARD (Quizlet style) ===== */
+.fc-stage{perspective:1600px;margin:10px auto 0;max-width:620px}
+.flashcard{position:relative;width:100%;height:300px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1);cursor:pointer}
+.flashcard.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;border:1px solid var(--line)}
+.face .lab{position:absolute;top:16px;left:20px;font-size:11px;letter-spacing:.2em;font-weight:800;color:var(--muted);text-transform:uppercase}
+.fc-li .sp{cursor:pointer;transition:.15s}
+.fc-li .sp:hover{color:var(--gold)}
+.face.front{background:linear-gradient(160deg,var(--panel2),var(--panel))}
+.face.front .term{font-family:'Fraunces',serif;font-size:clamp(30px,6vw,52px);font-weight:900;text-align:center}
+.face.back{background:linear-gradient(160deg,#1b2a26,#15201d);transform:rotateY(180deg)}
+.face.back .mean{font-size:clamp(22px,5vw,36px);font-weight:700;text-align:center;color:var(--mint);font-family:'Malgun Gothic','맑은 고딕',sans-serif}
+.fc-bar{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:12px}
+.fc-count{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:14px}
+.fc-nav{display:flex;gap:10px}
+.iconbtn{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:20px;cursor:pointer;transition:.15s}
+.iconbtn:hover{border-color:var(--gold);color:var(--gold)}
+.progress{height:6px;background:var(--panel2);border-radius:6px;overflow:hidden;margin-top:14px}
+.progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--gold));width:0;transition:.3s}
+.fc-modes{display:flex;gap:8px;justify-content:center;margin-bottom:6px}
+.fc-hint{text-align:center;color:var(--muted);font-size:12px;margin-top:10px}
+/* 1차 학습 분류 */
+.fc-guide{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.fc-guide-row{display:flex;align-items:center;gap:12px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--ink)}
+.fc-dir{flex:0 0 auto;font-weight:800;font-size:13px;padding:4px 10px;border-radius:8px}
+.fc-dir.left{background:rgba(255,92,108,.15);color:var(--rose)}
+.fc-dir.up{background:rgba(90,169,255,.15);color:var(--blue)}
+.fc-dir.right{background:rgba(61,220,151,.15);color:var(--ok)}
+.fc-roundbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.fc-sort{display:flex;gap:8px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.fc-sort .btn{flex:1;min-width:120px}
+.btn.sort-left{background:var(--rose);color:#2a0008}
+.btn.sort-up{background:var(--blue);color:#021a30}
+.btn.sort-right{background:var(--ok);color:#04231c}
+/* 드래그 분류 */
+.fc-dropguide{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.drop-zone{flex:1;text-align:center;padding:10px 6px;border-radius:10px;font-weight:800;font-size:13px;border:1px dashed var(--line);transition:.15s}
+.drop-zone.left{color:var(--rose)} .drop-zone.up{color:var(--blue)} .drop-zone.right{color:var(--ok)}
+.drop-zone.left.hot{background:rgba(255,92,108,.2);border-color:var(--rose)}
+.drop-zone.up.hot{background:rgba(90,169,255,.2);border-color:var(--blue)}
+.drop-zone.right.hot{background:rgba(61,220,151,.2);border-color:var(--ok)}
+.flashcard.dragging{transition:none;cursor:grabbing;touch-action:none}
+.flashcard.flyout{transition:transform .35s ease, opacity .35s ease}
+.fc-result-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;text-align:center}
+.fc-result-card h3{font-family:'Fraunces',serif;font-size:26px;margin-bottom:14px}
+.fc-stat{display:flex;gap:10px;justify-content:center;margin:16px 0;flex-wrap:wrap}
+.fc-stat .box{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 18px;min-width:90px}
+.fc-stat .box b{display:block;font-family:'JetBrains Mono',monospace;font-size:26px}
+.fc-stat .box span{font-size:11px;color:var(--muted)}
+.fc-stat .box.l b{color:var(--rose)} .fc-stat .box.u b{color:var(--blue)} .fc-stat .box.r b{color:var(--ok)}
+.fc-list{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:640px){.fc-list{grid-template-columns:1fr}}
+.fc-li{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;font-size:14px}
+.fc-li b{font-family:'Fraunces',serif;font-weight:600}
+.fc-li span{color:var(--mint)}
+
+/* ===== 직독직해 ===== */
+.dd-sent{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.dd-sent .num{font-family:'Fraunces',serif;font-weight:900;color:var(--gold);font-size:13px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.dd-redo{font-family:'Malgun Gothic',sans-serif;font-weight:700;font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 10px;cursor:pointer;transition:.15s}
+.dd-redo:hover{border-color:var(--violet);color:var(--violet)}
+.dd-full-en{font-family:'Fraunces',serif;font-size:18px;line-height:1.6;color:var(--ink);margin-bottom:6px;cursor:pointer;transition:.15s}
+.dd-full-en:hover{color:var(--gold)}
+.dd-full-ko{font-size:14px;color:var(--muted);margin-bottom:12px}
+.dd-chunk-row{display:flex;gap:10px;align-items:stretch;margin-bottom:6px;flex-wrap:wrap}
+.dd-cell{flex:1;min-width:0;border-radius:10px;padding:10px 12px;cursor:pointer;transition:.15s;border:1px solid var(--line);user-select:none}
+.dd-cell.en{background:var(--bg);font-family:'Fraunces',serif;font-size:15px}
+.dd-cell.ko{background:var(--bg);font-size:14px;color:var(--mint)}
+.dd-cell.en:hover{border-color:var(--violet)}
+.dd-cell.ko:hover{border-color:var(--mint)}
+.dd-cell .masked{color:var(--muted);font-style:italic;font-size:13px}
+.dd-cell.revealed.en{background:rgba(139,124,246,.12);border-color:var(--violet)}
+.dd-cell.revealed.ko{background:rgba(79,214,184,.12);border-color:var(--mint)}
+.dd-slash{display:flex;align-items:center;color:var(--violet);font-weight:900;font-size:18px}
+.dd-mode{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.dd-legend{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
+.dd-para-title{font-family:'Fraunces',serif;font-weight:900;font-size:16px;color:var(--violet);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.dd-para-title:first-child{margin-top:0}
+
+/* ===== 영작 ===== */
+.wr-item{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.wr-ko{font-size:16px;font-weight:600;margin-bottom:6px}
+.wr-hint{font-size:12px;color:var(--gold);margin-bottom:10px}
+.wr-item textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:12px;font-family:'Fraunces',serif;font-size:16px;resize:vertical;min-height:54px}
+.wr-item textarea:focus{outline:none;border-color:var(--mint)}
+.wr-ans{margin-top:10px;padding:12px;background:rgba(79,214,184,.08);border:1px solid rgba(79,214,184,.3);border-radius:10px;font-family:'Fraunces',serif;font-size:16px;color:var(--mint);display:none}
+.wr-ans.show{display:block}
+.wr-result{margin-top:10px}
+.wr-diff-box{padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:10px;font-size:15px;line-height:2}
+.wr-diff-row{margin:2px 0}
+.wr-diff-row b{color:var(--muted);font-size:12px;margin-right:6px}
+.d-ok{color:var(--ok)}
+.d-wrong{color:var(--bad);text-decoration:line-through;text-decoration-color:rgba(255,92,108,.5)}
+.d-wrong sub{color:var(--ok);text-decoration:none;font-size:.75em;margin-left:2px}
+.d-miss{color:var(--gold)}
+.d-extra{color:var(--bad);font-style:italic}
+.d-answer{color:var(--mint);font-family:'Fraunces',serif}
+.wr-diff{font-size:12px;color:var(--muted);margin-top:6px}
+.wr-mode{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+/* scramble */
+.scr-bank,.scr-slot{display:flex;flex-wrap:wrap;gap:6px;min-height:46px;padding:10px;border-radius:10px;margin-top:8px}
+.scr-slot{background:var(--bg);border:1px dashed var(--line)}
+.scr-bank{background:var(--panel)}
+.word{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;font-family:'Fraunces',serif;font-size:15px;transition:.12s;user-select:none}
+.word:hover{border-color:var(--mint);transform:translateY(-1px)}
+.scr-check{margin-top:8px}
+.correct-flash{animation:ok .5s}
+@keyframes ok{0%,100%{background:var(--bg)}50%{background:rgba(61,220,151,.25)}}
+
+/* ===== 문법 게임 ===== */
+.gm-score{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.gm-score .box{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;text-align:center}
+.gm-score .box b{display:block;font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--gold)}
+.gm-score .box span{font-size:11px;color:var(--muted)}
+.gm-q{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+.gm-tag{font-size:11px;font-weight:800;color:var(--violet);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.gm-q .qt{font-size:16px;line-height:1.6;margin-bottom:14px}
+.gm-q .qt code{background:var(--bg);padding:2px 6px;border-radius:5px;color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:14px}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;color:var(--ink);font-size:15px;transition:.12s;font-family:inherit}
+.opt:hover{border-color:var(--violet)}
+.opt.correct{background:rgba(61,220,151,.18);border-color:var(--ok);color:var(--ok);font-weight:700}
+.opt.wrong{background:rgba(255,92,108,.16);border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.gm-exp{margin-top:10px;padding:12px;border-radius:10px;background:rgba(245,185,66,.08);border:1px solid rgba(245,185,66,.3);font-size:13px;color:var(--ink);display:none}
+.gm-exp.show{display:block}
+.gm-exp b{color:var(--gold)}
+.gm-result{text-align:center;padding:30px}
+.gm-result h3{font-family:'Fraunces',serif;font-size:30px;margin-bottom:8px}
+.gm-result .big{font-family:'JetBrains Mono',monospace;font-size:54px;font-weight:700;color:var(--gold)}
+
+/* ===== 변형문제 ===== */
+.vt-passage-box{background:var(--panel2);border:1px solid var(--violet);border-radius:14px;padding:20px;margin-bottom:20px}
+.vt-passage-title{font-weight:800;color:var(--violet);font-size:14px;margin-bottom:10px}
+.vt-passage-full{font-family:'Fraunces',serif;font-size:16px;line-height:1.75;color:var(--ink)}
+.vt-q{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+.vt-q .num{font-family:'Fraunces',serif;font-weight:900;color:var(--gold);font-size:15px;margin-bottom:6px}
+.vt-q .type{font-size:11px;font-weight:800;color:var(--mint);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.vt-q .q{font-size:16px;font-weight:700;line-height:1.6;margin-bottom:10px}
+.vt-sentence{background:var(--bg);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 10px 10px 0;font-family:'Fraunces',serif;font-size:16px;line-height:1.6;margin-bottom:12px;color:var(--ink)}
+.vt-opts{margin-bottom:10px}
+.vt-opt{padding:7px 0;font-size:15px;line-height:1.5}
+.vt-ans-btn{font-size:12px}
+.vt-ans{margin-top:10px;padding:12px;background:rgba(79,214,184,.08);border:1px solid rgba(79,214,184,.3);border-radius:10px;font-size:14px;color:var(--mint);display:none;line-height:1.6}
+.vt-ans.show{display:block}
+
+footer{text-align:center;color:var(--muted);font-size:12px;padding:40px 0 10px;margin-top:30px;border-top:1px solid var(--line)}
+.sig{font-family:'Fraunces',serif;color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">미사이든학원 · 이든관리형학습센터</div>
+  <h1>A Game Changer</h1>
+  <p>고2 영어 YBM(민) Lesson 3 · Using Data in Sports</p>
+  <div class="divider"></div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" data-v="vocab">🃏 단어 카드</button>
+    <button class="tab" data-v="dd">📖 직독직해 게임</button>
+    <button class="tab" data-v="write">✍️ 영작</button>
+    <button class="tab" data-v="gram">🎮 문법 게임</button>
+    <button class="tab" data-v="var">📝 변형문제</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ===================== VOCAB ===================== -->
+<section class="view active" id="v-vocab">
+  <div class="shead"><div class="n">01</div><div><h2>단어 1차 학습</h2><p>뜻이 떠오르는 속도로 분류 → 3회 반복</p></div></div>
+
+  <!-- 시작 화면 -->
+  <div class="card" id="fcIntro">
+    <p style="color:var(--muted);line-height:1.8;margin-bottom:16px">
+      단어를 보고 <b style="color:var(--ink)">뒤집어 확인</b>한 뒤, 떠오른 속도에 따라 분류하세요.<br>
+      이 과정을 <b style="color:var(--gold)">3회 반복</b>하면서 모르는 단어를 집중적으로 익힙니다.</p>
+    <div class="fc-guide">
+      <div class="fc-guide-row"><span class="fc-dir left">⬅️ 왼쪽</span><span>틀렸거나 모름 / 아는데 생각이 안 남</span></div>
+      <div class="fc-guide-row"><span class="fc-dir up">⬆️ 위쪽</span><span>잠시 후(3초 내)에 떠오름</span></div>
+      <div class="fc-guide-row"><span class="fc-dir right">➡️ 오른쪽</span><span>보자마자(0.5초) 바로 떠오름</span></div>
+    </div>
+    <div class="fc-modes" style="margin-top:18px">
+      <button class="btn gold" id="fcDirEK" data-dir="ek">영어 → 한글</button>
+      <button class="btn ghost" id="fcDirKE" data-dir="ke">한글 → 영어</button>
+    </div>
+    <button class="btn gold" id="fcBegin" style="margin-top:8px">🎯 1차 학습 시작 (전체 60단어)</button>
+  </div>
+
+  <!-- 학습 화면 -->
+  <div id="fcPlay" style="display:none">
+    <div class="fc-roundbar">
+      <span class="pill" id="fcRound">1회차 / 3회</span>
+      <span class="fc-count" id="fcCount">1 / 60</span>
+      <span class="pill" id="fcTally">⬅️ 0 · ⬆️ 0 · ➡️ 0</span>
+    </div>
+    <div class="progress"><i id="fcProg"></i></div>
+    <div class="fc-stage">
+      <div class="flashcard" id="flashcard">
+        <div class="face front"><span class="lab" id="fcLabF">ENGLISH</span><div class="term" id="fcTerm">famous</div></div>
+        <div class="face back"><span class="lab">한글 뜻</span><div class="mean" id="fcMean">유명한</div></div>
+      </div>
+    </div>
+    <p class="fc-hint" id="fcFlipHint">👆 카드를 클릭해 뜻을 확인하세요</p>
+    <div class="fc-dropguide" id="fcDropGuide" style="display:none">
+      <span class="drop-zone left">⬅️ 모름</span>
+      <span class="drop-zone up">⬆️ 잠시 후</span>
+      <span class="drop-zone right">바로 떠오름 ➡️</span>
+    </div>
+    <p class="fc-hint" id="fcDragHint" style="display:none">카드를 잡아서 ⬅️왼쪽(모름) · ⬆️위(잠시 후) · ➡️오른쪽(바로)으로 밀어 보내세요</p>
+    <p class="fc-hint">키보드: ← (모름) · ↑ (잠시 후) · → (바로) · 스페이스(뒤집기)</p>
+  </div>
+
+  <!-- 라운드 결과 화면 -->
+  <div id="fcResult" style="display:none"></div>
+
+  <div class="fc-list" id="fcList"></div>
+</section>
+
+<!-- ===================== 직독직해 ===================== -->
+<section class="view" id="v-dd">
+  <div class="shead"><div class="n">02</div><div><h2>직독직해</h2><p>문장 단위 · 의미 단위(/)로 끊어 읽기 · 클릭하면 숨겨진 쪽이 보입니다</p></div></div>
+  <div class="passage-pick" id="ddPick"></div>
+  <div class="dd-mode">
+    <button class="btn violet" data-ddm="en2ko">영어 보고 → 해석 맞히기</button>
+    <button class="btn ghost" data-ddm="ko2en">한글 보고 → 영어 맞히기</button>
+    <button class="btn ghost" data-ddm="all">전체 보기</button>
+  </div>
+  <div class="dd-legend" id="ddLegend">💡 의미 단위별로 영어와 해석이 위아래로 짝지어 있습니다. 가려진 칸(회색 글씨)을 클릭하면 내용이 나타나고, 영어를 클릭하면 발음이 나옵니다. 🔊</div>
+  <div id="ddBody"></div>
+</section>
+
+<!-- ===================== 영작 ===================== -->
+<section class="view" id="v-write">
+  <div class="shead"><div class="n">03</div><div><h2>전체 지문 영작</h2><p>한글 → 영어 · 세 가지 방식으로 연습</p></div></div>
+  <div class="wr-mode">
+    <button class="btn gold" data-wm="scramble">🧩 단어 배열</button>
+    <button class="btn ghost" data-wm="hint">💡 힌트 영작</button>
+    <button class="btn ghost" data-wm="type">⌨️ 직접 영작</button>
+  </div>
+  <div class="passage-pick" id="wrPick"></div>
+  <div id="wrBody"></div>
+</section>
+
+<!-- ===================== 문법 게임 ===================== -->
+<section class="view" id="v-gram">
+  <div class="shead"><div class="n">04</div><div><h2>문법 게임</h2><p>시험 대비 퀴즈 · 수동태 / to부정사 / 관계대명사 / 접속사 / 분사</p></div></div>
+  <div class="card" id="gramHome">
+    <p style="color:var(--muted);margin-bottom:16px">Lesson 3 핵심 문법 <b style="color:var(--ink)" id="gramTotal">20</b>문제. 객관식으로 풀고 즉시 해설을 확인하세요. 틀린 문제는 마지막에 다시 복습할 수 있습니다.</p>
+    <div class="row">
+      <button class="btn violet" id="gramStart">🎮 게임 시작</button>
+      <button class="btn ghost" id="gramByType">유형별 보기</button>
+    </div>
+  </div>
+  <div id="gramPlay" style="display:none">
+    <div class="gm-score">
+      <div class="box"><b id="gsScore">0</b><span>점수</span></div>
+      <div class="box"><b id="gsStreak">0</b><span>연속 정답</span></div>
+      <div class="box"><b id="gsNum">1/20</b><span>진행</span></div>
+    </div>
+    <div id="gramQ"></div>
+    <div class="row" style="justify-content:flex-end;margin-top:10px">
+      <button class="btn gold" id="gramNext" style="display:none">다음 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 변형문제 ===================== -->
+<section class="view" id="v-var">
+  <div class="shead"><div class="n">05</div><div><h2>변형문제</h2><p>지문별 5문항 · 내신 서술형·객관식 출제 유형</p></div></div>
+  <div class="passage-pick" id="vtPick"></div>
+  <div id="vtBody"></div>
+</section>
+
+</div>
+
+<footer>
+  미사이든학원 · 이든관리형학습센터 &nbsp;|&nbsp; The 8 Pillars 학습 시스템<br>
+  <span class="sig">원장 황붕주</span>
+</footer>
+
+<script>
+/* ============== DATA ============== */
+const VOCAB = [
+ ["industry","산업, 업계"],["shocked","충격받은"],["limited","제한된, 한정된"],["attract","끌어들이다"],
+ ["decision","결정"],["create","만들다, 창조하다"],["discover","발견하다"],["pattern","패턴, 양상"],
+ ["trend","경향, 추세"],["traditional","전통적인"],["prefer","선호하다"],["measure","측정하다"],
+ ["safely","안전하게"],["identify","찾아내다, 알아보다"],["significant","상당한, 중요한"],["contribution","기여, 공헌"],
+ ["budget","예산"],["success","성공"],["movement","움직임, 운동"],["predict","예측하다"],
+ ["outcome","결과"],["similar","비슷한"],["aim","목표로 하다"],["demand","요구하다"],
+ ["common","공통의, 흔한"],["apply","적용하다"],["injury","부상"],["prevention","예방"],
+ ["strategy","전략"],["fit","맞다, 적합하다"],["prevent","예방하다, 막다"],["praise","칭찬하다"],
+ ["effort","노력"],["notable","주목할 만한"],["recognize","인식하다, 깨닫다"],["technique","기술"],
+ ["melt","녹이다, 녹다"],["target","목표(지점)"],["pressure","압력"],["transfer","전달하다, 옮기다"],
+ ["balance","균형"],["effective","효과적인"],["device","장치"],["attach","부착하다"],
+ ["obtain","얻다"],["monitor","관찰하다, 감시하다"],["temperature","온도"],["surface","표면"],
+ ["critical","중요한, 결정적인"],["dominate","지배하다, 압도하다"],["maintain","유지하다"],["rival","경쟁자"],
+ ["preparation","준비"],["develop","개발하다"],["convert","바꾸다, 전환하다"],["stable","안정적인"],
+ ["crucial","결정적인, 중요한"],["request","요청하다"],["habit","습관"],["limitation","한계, 제약"]
+];
+
+// 각 지문은 sentences[] 로 구성. 각 문장: {en, ko, chunks:[[영,해석]...]}
+const PASSAGES = [
+ {id:"p1", name:"① 애슬레틱스", title:"Oakland Athletics & Sabermetrics",
+  sentences:[
+   {en:"When the Oakland Athletics, a Major League Baseball team, won 20 games in a row in 2002, the professional sports industry was shocked.",
+    ko:"메이저리그 야구팀인 오클랜드 애슬레틱스가 2002년에 20경기를 연속으로 이겼을 때, 프로 스포츠 업계는 충격을 받았다.",
+    chunks:[["When the Oakland Athletics,","오클랜드 애슬레틱스가 ~했을 때"],["a Major League Baseball team,","메이저리그 야구팀인"],["won 20 games in a row","20경기를 연속으로 이겼다"],["in 2002,","2002년에"],["the professional sports industry was shocked.","프로 스포츠 업계는 충격을 받았다"]]},
+   {en:"The Oakland Athletics were a small team with limited funds, which made it difficult for them to attract elite players.",
+    ko:"오클랜드 애슬레틱스는 자금이 한정된 작은 팀이어서, 그것이 그들이 정예 선수를 영입하는 것을 어렵게 만들었다.",
+    chunks:[["The Oakland Athletics were a small team","오클랜드 애슬레틱스는 작은 팀이었다"],["with limited funds,","한정된 자금을 가진"],["which made it difficult for them","그것은 그들에게 ~을 어렵게 만들었다"],["to attract elite players.","정예 선수를 영입하는 것을"]]},
+   {en:"How did they do it?",
+    ko:"그들은 그것을 어떻게 해냈을까?",
+    chunks:[["How did they do it?","그들은 그것을 어떻게 해냈을까?"]]},
+   {en:"The key to their success was adopting sabermetrics, a statistical model used for making decisions in baseball.",
+    ko:"그들의 성공의 열쇠는 야구에서 의사 결정을 하는 데 사용되는 통계 모델인 세이버메트릭스를 도입한 것이었다.",
+    chunks:[["The key to their success","그들의 성공의 열쇠는"],["was adopting sabermetrics,","세이버메트릭스를 도입한 것이었다"],["a statistical model","통계 모델인"],["used for making decisions in baseball.","야구에서 의사 결정을 하는 데 사용되는"]]}
+  ]},
+ {id:"p2", name:"② 세이버메트릭스", title:"What Sabermetrics Does",
+  sentences:[
+   {en:"Sabermetrics was created in the late 1970s.",
+    ko:"세이버메트릭스는 1970년대 후반에 만들어졌다.",
+    chunks:[["Sabermetrics was created","세이버메트릭스는 만들어졌다"],["in the late 1970s.","1970년대 후반에"]]},
+   {en:"It tries to use large amounts of information to discover patterns, trends, and insights that are difficult to find with traditional ways of studying statistics.",
+    ko:"그것은 통계를 연구하는 전통적인 방법으로는 찾기 어려운 패턴, 경향, 통찰을 발견하기 위해 많은 양의 정보를 사용하려 한다.",
+    chunks:[["It tries to use","그것은 사용하려 한다"],["large amounts of information","많은 양의 정보를"],["to discover patterns, trends, and insights","패턴, 경향, 통찰을 발견하기 위해"],["that are difficult to find","찾기 어려운"],["with traditional ways of studying statistics.","통계를 연구하는 전통적인 방법으로는"]]},
+   {en:"Normally, coaches and managers prefer players who can hit the ball hard and far, for such players tend to hit more home runs and extra-base hits.",
+    ko:"보통 코치와 감독은 공을 세게 멀리 칠 수 있는 선수를 선호하는데, 그런 선수가 더 많은 홈런과 장타를 치는 경향이 있기 때문이다.",
+    chunks:[["Normally, coaches and managers prefer players","보통 코치와 감독은 선수를 선호한다"],["who can hit the ball hard and far,","공을 세게 멀리 칠 수 있는"],["for such players tend to hit","그런 선수가 치는 경향이 있기 때문에"],["more home runs and extra-base hits.","더 많은 홈런과 장타를"]]},
+   {en:"Sabermetrics suggests that players' offensive skills can be better measured by the frequency with which they safely reach base.",
+    ko:"세이버메트릭스는 선수의 공격 능력이 그들이 안전하게 출루하는 빈도로 더 잘 측정될 수 있다고 말한다.",
+    chunks:[["Sabermetrics suggests that","세이버메트릭스는 ~라고 말한다"],["players' offensive skills","선수의 공격 능력이"],["can be better measured","더 잘 측정될 수 있다"],["by the frequency","빈도로"],["with which they safely reach base.","그들이 안전하게 출루하는"]]},
+   {en:"It does not matter whether this is achieved through hits, walks, or hits by pitch.",
+    ko:"이것이 안타로, 볼넷으로, 또는 몸에 맞는 공으로 이루어지든 상관없다.",
+    chunks:[["It does not matter","상관없다"],["whether this is achieved","이것이 이루어지든"],["through hits, walks, or hits by pitch.","안타, 볼넷, 또는 몸에 맞는 공으로"]]},
+   {en:"Sabermetrics had not been widely used until the Athletics adopted it in 2002.",
+    ko:"세이버메트릭스는 애슬레틱스가 2002년에 그것을 도입할 때까지 널리 사용되지 않았다.",
+    chunks:[["Sabermetrics had not been widely used","세이버메트릭스는 널리 사용되지 않았다"],["until the Athletics adopted it","애슬레틱스가 그것을 도입할 때까지"],["in 2002.","2002년에"]]},
+   {en:"With sabermetrics, the Athletics were able to identify underrated players with significant contributions to winning and built a strong team on a small budget.",
+    ko:"세이버메트릭스로 애슬레틱스는 승리에 큰 기여를 하는 과소평가된 선수를 찾아낼 수 있었고 적은 예산으로 강한 팀을 만들었다.",
+    chunks:[["With sabermetrics,","세이버메트릭스로"],["the Athletics were able to identify","애슬레틱스는 찾아낼 수 있었다"],["underrated players","과소평가된 선수를"],["with significant contributions to winning","승리에 큰 기여를 하는"],["and built a strong team","그리고 강한 팀을 만들었다"],["on a small budget.","적은 예산으로"]]},
+   {en:"The success of the Athletics prompted other teams to quickly adopt sabermetrics, sparking a movement to utilize data not only in baseball but also in other sports.",
+    ko:"애슬레틱스의 성공은 다른 팀들이 세이버메트릭스를 빠르게 도입하도록 촉발했고, 야구뿐만 아니라 다른 스포츠에서도 데이터를 활용하려는 움직임을 불러일으켰다.",
+    chunks:[["The success of the Athletics prompted other teams","애슬레틱스의 성공은 다른 팀들을 촉발했다"],["to quickly adopt sabermetrics,","세이버메트릭스를 빠르게 도입하도록"],["sparking a movement","움직임을 불러일으키면서"],["to utilize data","데이터를 활용하려는"],["not only in baseball but also in other sports.","야구뿐만 아니라 다른 스포츠에서도"]]},
+   {en:"Thus, sports data analytics emerged as a systematic approach to predict game outcomes.",
+    ko:"그리하여 스포츠 데이터 분석은 경기 결과를 예측하는 체계적인 접근법으로 등장했다.",
+    chunks:[["Thus, sports data analytics emerged","그리하여 스포츠 데이터 분석이 등장했다"],["as a systematic approach","체계적인 접근법으로"],["to predict game outcomes.","경기 결과를 예측하는"]]}
+  ]},
+ {id:"p3", name:"③ 리버풀", title:"Liverpool FC & Data Team",
+  sentences:[
+   {en:"In soccer, the Liverpool Football Club of the English Premier League is similar to the Oakland Athletics in baseball.",
+    ko:"축구에서, 잉글리시 프리미어 리그의 리버풀 풋볼 클럽은 야구의 오클랜드 애슬레틱스와 비슷하다.",
+    chunks:[["In soccer,","축구에서"],["the Liverpool Football Club","리버풀 풋볼 클럽은"],["of the English Premier League","잉글리시 프리미어 리그의"],["is similar to the Oakland Athletics","오클랜드 애슬레틱스와 비슷하다"],["in baseball.","야구의"]]},
+   {en:"In 2010, Liverpool underwent a change in ownership.",
+    ko:"2010년에 리버풀은 소유권의 변화를 겪었다.",
+    chunks:[["In 2010,","2010년에"],["Liverpool underwent","리버풀은 겪었다"],["a change in ownership.","소유권의 변화를"]]},
+   {en:"While data analysis was already prevailing in the Premier League at that time, the new owner of the club, who also owned a baseball team in the United States, aimed to push data analysis in soccer to new heights.",
+    ko:"그 당시 데이터 분석이 프리미어 리그에 이미 널리 퍼져 있었지만, 미국에서 야구팀도 소유하고 있던 그 클럽의 새 구단주는 축구에서의 데이터 분석을 새로운 수준으로 끌어올리는 것을 목표로 했다.",
+    chunks:[["While data analysis was already prevailing","데이터 분석이 이미 널리 퍼져 있었지만"],["in the Premier League at that time,","그 당시 프리미어 리그에"],["the new owner of the club,","그 클럽의 새 구단주는"],["who also owned a baseball team in the United States,","미국에서 야구팀도 소유하고 있던"],["aimed to push data analysis in soccer","축구에서의 데이터 분석을 밀어붙이는 것을 목표로 했다"],["to new heights.","새로운 수준으로"]]},
+   {en:"So he demanded that the club form a new data team.",
+    ko:"그래서 그는 그 클럽이 새로운 데이터 팀을 구성할 것을 요구했다.",
+    chunks:[["So he demanded that","그래서 그는 ~을 요구했다"],["the club form a new data team.","그 클럽이 새로운 데이터 팀을 구성할 것을"]]},
+   {en:"The new team included a physicist from Cambridge, a nuclear scientist from Harvard, and a former chess champion.",
+    ko:"그 새 팀에는 케임브리지 출신의 물리학자, 하버드 출신의 핵 과학자, 그리고 전직 체스 챔피언이 포함되었다.",
+    chunks:[["The new team included","그 새 팀에는 포함되었다"],["a physicist from Cambridge,","케임브리지 출신의 물리학자"],["a nuclear scientist from Harvard,","하버드 출신의 핵 과학자"],["and a former chess champion.","그리고 전직 체스 챔피언이"]]},
+   {en:"What they had in common was significant expertise in data.",
+    ko:"그들이 공통으로 가진 것은 데이터에 관한 상당한 전문 지식이었다.",
+    chunks:[["What they had in common","그들이 공통으로 가진 것은"],["was significant expertise in data.","데이터에 관한 상당한 전문 지식이었다"]]},
+   {en:"The team started to apply data analysis in key areas of club management, including player recruitment, injury prevention, and strategy during the game.",
+    ko:"그 팀은 선수 영입, 부상 예방, 경기 중 전략을 포함한 구단 운영의 핵심 영역에 데이터 분석을 적용하기 시작했다.",
+    chunks:[["The team started to apply data analysis","그 팀은 데이터 분석을 적용하기 시작했다"],["in key areas of club management,","구단 운영의 핵심 영역에"],["including player recruitment, injury prevention,","선수 영입, 부상 예방을 포함하여"],["and strategy during the game.","그리고 경기 중 전략을"]]},
+   {en:"The team analyzed large amounts of data to recruit players who fit the team's style of play.",
+    ko:"그 팀은 팀의 경기 스타일에 맞는 선수를 영입하기 위해 많은 양의 데이터를 분석했다.",
+    chunks:[["The team analyzed large amounts of data","그 팀은 많은 양의 데이터를 분석했다"],["to recruit players","선수를 영입하기 위해"],["who fit the team's style of play.","팀의 경기 스타일에 맞는"]]},
+   {en:"In training, they collected data on players' movement patterns, heart rates, and vital signs by using GPS trackers and sensors to prevent injuries.",
+    ko:"훈련에서, 그들은 부상을 예방하기 위해 GPS 추적기와 센서를 사용하여 선수들의 움직임 패턴, 심박수, 활력 징후에 관한 데이터를 수집했다.",
+    chunks:[["In training, they collected data","훈련에서 그들은 데이터를 수집했다"],["on players' movement patterns, heart rates, and vital signs","선수들의 움직임 패턴, 심박수, 활력 징후에 관한"],["by using GPS trackers and sensors","GPS 추적기와 센서를 사용하여"],["to prevent injuries.","부상을 예방하기 위해"]]},
+   {en:"During games, they used live data to make tactical decisions such as substitutions and formations.",
+    ko:"경기 중에, 그들은 교체와 대형 같은 전술적 결정을 내리기 위해 실시간 데이터를 사용했다.",
+    chunks:[["During games, they used live data","경기 중에 그들은 실시간 데이터를 사용했다"],["to make tactical decisions","전술적 결정을 내리기 위해"],["such as substitutions and formations.","교체와 대형 같은"]]},
+   {en:"The data team was praised for its efforts when the Liverpool Football Club won the league championship for the first time in 30 years in 2020.",
+    ko:"리버풀 풋볼 클럽이 2020년에 30년 만에 처음으로 리그 우승을 차지했을 때, 그 데이터 팀은 그 노력에 대해 칭찬받았다.",
+    chunks:[["The data team was praised for its efforts","그 데이터 팀은 그 노력에 대해 칭찬받았다"],["when the Liverpool Football Club won the league championship","리버풀 풋볼 클럽이 리그 우승을 차지했을 때"],["for the first time in 30 years","30년 만에 처음으로"],["in 2020.","2020년에"]]}
+  ]},
+ {id:"p4", name:"④ 컬링", title:"Korean Women's Curling Team",
+  sentences:[
+   {en:"The emergence of sports analytics did not go unnoticed by the Korean sports industry.",
+    ko:"스포츠 분석의 등장은 한국 스포츠 업계에서 주목받지 못한 채 지나가지 않았다.",
+    chunks:[["The emergence of sports analytics","스포츠 분석의 등장은"],["did not go unnoticed","주목받지 못한 채 지나가지 않았다"],["by the Korean sports industry.","한국 스포츠 업계에서"]]},
+   {en:"One notable example of success is the Korean women's curling team.",
+    ko:"성공의 한 가지 주목할 만한 예는 한국 여자 컬링팀이다.",
+    chunks:[["One notable example of success","성공의 한 가지 주목할 만한 예는"],["is the Korean women's curling team.","한국 여자 컬링팀이다"]]},
+   {en:"Following its debut at the Winter Olympic Games of 2014, the team recognized the need to enhance its sweeping technique.",
+    ko:"2014년 동계 올림픽에서의 데뷔 이후, 그 팀은 스위핑 기술을 향상시킬 필요성을 인식했다.",
+    chunks:[["Following its debut","데뷔 이후"],["at the Winter Olympic Games of 2014,","2014년 동계 올림픽에서의"],["the team recognized the need","그 팀은 필요성을 인식했다"],["to enhance its sweeping technique.","스위핑 기술을 향상시킬"]]},
+   {en:"Sweeping melts the ice and makes the stone move faster.",
+    ko:"스위핑은 얼음을 녹이고 스톤이 더 빨리 움직이게 만든다.",
+    chunks:[["Sweeping melts the ice","스위핑은 얼음을 녹인다"],["and makes the stone move faster.","그리고 스톤이 더 빨리 움직이게 만든다"]]},
+   {en:"If too much ice melts, however, the stone moves too fast and misses the target.",
+    ko:"그러나 너무 많은 얼음이 녹으면, 스톤은 너무 빨리 움직여 목표 지점을 놓친다.",
+    chunks:[["If too much ice melts, however,","그러나 너무 많은 얼음이 녹으면"],["the stone moves too fast","스톤은 너무 빨리 움직인다"],["and misses the target.","그리고 목표 지점을 놓친다"]]},
+   {en:"On the other hand, if not enough ice melts, the stone stops before reaching the target.",
+    ko:"반면에, 충분한 얼음이 녹지 않으면, 스톤은 목표 지점에 도달하기 전에 멈춘다.",
+    chunks:[["On the other hand,","반면에"],["if not enough ice melts,","충분한 얼음이 녹지 않으면"],["the stone stops","스톤은 멈춘다"],["before reaching the target.","목표 지점에 도달하기 전에"]]},
+   {en:"The amount of ice melting depends on the sweeping speed and pressure.",
+    ko:"녹는 얼음의 양은 스위핑 속도와 압력에 달려 있다.",
+    chunks:[["The amount of ice melting","녹는 얼음의 양은"],["depends on the sweeping speed and pressure.","스위핑 속도와 압력에 달려 있다"]]},
+   {en:"Applying too much pressure slows down the sweeping speed, and focusing only on speed makes it hard to transfer enough force to the broom.",
+    ko:"너무 많은 압력을 가하면 스위핑 속도가 느려지고, 속도에만 집중하면 빗자루에 충분한 힘을 전달하기 어려워진다.",
+    chunks:[["Applying too much pressure","너무 많은 압력을 가하는 것은"],["slows down the sweeping speed,","스위핑 속도를 느리게 한다"],["and focusing only on speed","그리고 속도에만 집중하는 것은"],["makes it hard to transfer enough force","충분한 힘을 전달하기 어렵게 만든다"],["to the broom.","빗자루에"]]},
+   {en:"Finding the right balance between speed and pressure is important to melt the right amount of ice.",
+    ko:"속도와 압력 사이의 적절한 균형을 찾는 것은 적절한 양의 얼음을 녹이기 위해 중요하다.",
+    chunks:[["Finding the right balance","적절한 균형을 찾는 것은"],["between speed and pressure","속도와 압력 사이의"],["is important","중요하다"],["to melt the right amount of ice.","적절한 양의 얼음을 녹이기 위해"]]},
+   {en:"To identify the most effective technique, the Korean team designed a sweeping measurement device.",
+    ko:"가장 효과적인 기술을 찾아내기 위해, 한국 팀은 스위핑 측정 장치를 설계했다.",
+    chunks:[["To identify the most effective technique,","가장 효과적인 기술을 찾아내기 위해"],["the Korean team designed","한국 팀은 설계했다"],["a sweeping measurement device.","스위핑 측정 장치를"]]},
+   {en:"The device consisted of infrared cameras and sensors attached to the players' bodies, shoes, and brooms.",
+    ko:"그 장치는 선수들의 몸, 신발, 빗자루에 부착된 적외선 카메라와 센서로 구성되었다.",
+    chunks:[["The device consisted of","그 장치는 ~로 구성되었다"],["infrared cameras and sensors","적외선 카메라와 센서"],["attached to the players' bodies, shoes, and brooms.","선수들의 몸, 신발, 빗자루에 부착된"]]},
+   {en:"Through the device and motion-capture screens, foot pressure values and other data were obtained for analysis.",
+    ko:"그 장치와 모션 캡처 화면을 통해, 발 압력 수치와 다른 데이터가 분석을 위해 얻어졌다.",
+    chunks:[["Through the device and motion-capture screens,","그 장치와 모션 캡처 화면을 통해"],["foot pressure values and other data","발 압력 수치와 다른 데이터가"],["were obtained for analysis.","분석을 위해 얻어졌다"]]},
+   {en:"After monitoring changes in the temperature of the ice surface, the team concluded that speed was more economical than strength for sweeping.",
+    ko:"얼음 표면의 온도 변화를 관찰한 후, 그 팀은 스위핑에서 속도가 힘보다 더 효율적이라고 결론지었다.",
+    chunks:[["After monitoring changes","변화를 관찰한 후"],["in the temperature of the ice surface,","얼음 표면의 온도의"],["the team concluded that","그 팀은 ~라고 결론지었다"],["speed was more economical than strength","속도가 힘보다 더 효율적이라고"],["for sweeping.","스위핑에서"]]},
+   {en:"The use of data analysis was critical in the team's winning of a silver medal at the 2018 Pyeongchang Winter Olympics.",
+    ko:"데이터 분석의 사용은 그 팀이 2018년 평창 동계 올림픽에서 은메달을 따는 데 결정적이었다.",
+    chunks:[["The use of data analysis was critical","데이터 분석의 사용은 결정적이었다"],["in the team's winning of a silver medal","그 팀이 은메달을 따는 데"],["at the 2018 Pyeongchang Winter Olympics.","2018년 평창 동계 올림픽에서"]]}
+  ]},
+ {id:"p5", name:"⑤ 양궁·한계", title:"Archery Team & Limitations",
+  sentences:[
+   {en:"The successful use of sports analytics was not limited to the curling team.",
+    ko:"스포츠 분석의 성공적인 사용은 컬링팀에 국한되지 않았다.",
+    chunks:[["The successful use of sports analytics","스포츠 분석의 성공적인 사용은"],["was not limited to the curling team.","컬링팀에 국한되지 않았다"]]},
+   {en:"The Korean women's archery team had dominated the sport for decades.",
+    ko:"한국 여자 양궁팀은 수십 년 동안 그 종목을 지배해 왔다.",
+    chunks:[["The Korean women's archery team","한국 여자 양궁팀은"],["had dominated the sport","그 종목을 지배해 왔다"],["for decades.","수십 년 동안"]]},
+   {en:"However, the team turned to sports analytics to maintain its edge over its rivals in preparation for the 2020 Tokyo Olympics.",
+    ko:"그러나 그 팀은 2020년 도쿄 올림픽을 준비하면서 경쟁자들에 대한 우위를 유지하기 위해 스포츠 분석에 의지했다.",
+    chunks:[["However, the team turned to sports analytics","그러나 그 팀은 스포츠 분석에 의지했다"],["to maintain its edge over its rivals","경쟁자들에 대한 우위를 유지하기 위해"],["in preparation for the 2020 Tokyo Olympics.","2020년 도쿄 올림픽을 준비하면서"]]},
+   {en:"The team developed a system to monitor players' heart rates by using advanced visual computing technology to convert facial color variations into heart rates.",
+    ko:"그 팀은 얼굴 색 변화를 심박수로 바꾸는 발전된 시각 컴퓨팅 기술을 사용하여 선수들의 심박수를 관찰하는 시스템을 개발했다.",
+    chunks:[["The team developed a system","그 팀은 시스템을 개발했다"],["to monitor players' heart rates","선수들의 심박수를 관찰하는"],["by using advanced visual computing technology","발전된 시각 컴퓨팅 기술을 사용하여"],["to convert facial color variations into heart rates.","얼굴 색 변화를 심박수로 바꾸는"]]},
+   {en:"This data was used for psychological training to help players maintain stable heart rates during crucial moments.",
+    ko:"이 데이터는 선수들이 결정적인 순간에 안정적인 심박수를 유지하도록 돕기 위한 심리 훈련에 사용되었다.",
+    chunks:[["This data was used","이 데이터는 사용되었다"],["for psychological training","심리 훈련에"],["to help players maintain stable heart rates","선수들이 안정적인 심박수를 유지하도록 돕기 위해"],["during crucial moments.","결정적인 순간에"]]},
+   {en:"The team also created an AI coach that helped adjust shooting form.",
+    ko:"그 팀은 또한 슈팅 자세를 조정하도록 돕는 AI 코치를 만들었다.",
+    chunks:[["The team also created an AI coach","그 팀은 또한 AI 코치를 만들었다"],["that helped adjust shooting form.","슈팅 자세를 조정하도록 돕는"]]},
+   {en:"The team managers requested that the AI coach edit training videos of the players to assist with practical analysis.",
+    ko:"팀 관리자들은 AI 코치가 실용적인 분석을 돕기 위해 선수들의 훈련 영상을 편집할 것을 요청했다.",
+    chunks:[["The team managers requested that","팀 관리자들은 ~을 요청했다"],["the AI coach edit training videos of the players","AI 코치가 선수들의 훈련 영상을 편집할 것을"],["to assist with practical analysis.","실용적인 분석을 돕기 위해"]]},
+   {en:"Players and coaches used the edited videos to analyze the players' usual habits or weaknesses.",
+    ko:"선수와 코치들은 편집된 영상을 선수들의 평소 습관이나 약점을 분석하는 데 사용했다.",
+    chunks:[["Players and coaches used the edited videos","선수와 코치들은 편집된 영상을 사용했다"],["to analyze the players' usual habits or weaknesses.","선수들의 평소 습관이나 약점을 분석하는 데"]]},
+   {en:"The active use of data analysis by the Korean women's archery team handed them their ninth Olympic gold medal in a row in Tokyo.",
+    ko:"한국 여자 양궁팀의 적극적인 데이터 분석 활용은 그들에게 도쿄에서 9연속 올림픽 금메달을 안겨주었다.",
+    chunks:[["The active use of data analysis","적극적인 데이터 분석 활용은"],["by the Korean women's archery team","한국 여자 양궁팀의"],["handed them their ninth Olympic gold medal in a row","그들에게 9연속 올림픽 금메달을 안겨주었다"],["in Tokyo.","도쿄에서"]]},
+   {en:"There are still limitations to what data analysis can capture in games.",
+    ko:"데이터 분석이 경기에서 담아낼 수 있는 것에는 여전히 한계가 있다.",
+    chunks:[["There are still limitations","여전히 한계가 있다"],["to what data analysis can capture","데이터 분석이 담아낼 수 있는 것에"],["in games.","경기에서"]]},
+   {en:"Factors such as team chemistry, which is related to how well people get along, will likely remain difficult to measure.",
+    ko:"사람들이 얼마나 잘 어울리는지와 관련된 팀 호흡 같은 요소들은 측정하기 어려운 채로 남을 가능성이 크다.",
+    chunks:[["Factors such as team chemistry,","팀 호흡 같은 요소들은"],["which is related to how well people get along,","사람들이 얼마나 잘 어울리는지와 관련된"],["will likely remain difficult to measure.","측정하기 어려운 채로 남을 가능성이 크다"]]},
+   {en:"Similarly, predicting player performance in a match cannot be entirely accurate as players are humans and not machines.",
+    ko:"마찬가지로, 경기에서 선수의 경기력을 예측하는 것은 선수가 기계가 아닌 인간이기 때문에 완전히 정확할 수는 없다.",
+    chunks:[["Similarly, predicting player performance","마찬가지로, 선수의 경기력을 예측하는 것은"],["in a match cannot be entirely accurate","경기에서 완전히 정확할 수는 없다"],["as players are humans and not machines.","선수가 기계가 아닌 인간이기 때문에"]]},
+   {en:"Still, sports analytics is undeniably elevating the level of play across various sports, and fans are enjoying this development.",
+    ko:"그래도, 스포츠 분석은 다양한 스포츠 전반에 걸쳐 경기 수준을 부인할 수 없이 높이고 있고, 팬들은 이 발전을 즐기고 있다.",
+    chunks:[["Still, sports analytics is undeniably elevating","그래도 스포츠 분석은 부인할 수 없이 높이고 있다"],["the level of play","경기 수준을"],["across various sports,","다양한 스포츠 전반에 걸쳐"],["and fans are enjoying this development.","그리고 팬들은 이 발전을 즐기고 있다"]]}
+  ]}
+];
+// full 텍스트 생성 (변형문제 지문 제시용)
+PASSAGES.forEach(p=>p.full=p.sentences.map(s=>s.en).join(' '));
+
+// 영작 — 본문 전체 문장 사용 (PASSAGES의 모든 문장에서 자동 생성). 기초 학생용 힌트 매핑.
+const WRITE_HINTS = {
+ "When the Oakland Athletics, a Major League Baseball team, won 20 games in a row in 2002, the professional sports industry was shocked.":"접속사 When + 과거시제 / win-won-won, in a row(연속으로)",
+ "The Oakland Athletics were a small team with limited funds, which made it difficult for them to attract elite players.":"관계대명사 which(앞 문장 전체), make it+형용사+for+목적격+to부정사",
+ "How did they do it?":"의문문 어순: How did + 주어 + 동사원형?",
+ "The key to their success was adopting sabermetrics, a statistical model used for making decisions in baseball.":"동명사 adopting(주격보어), 과거분사 used(앞 명사 수식)",
+ "Sabermetrics was created in the late 1970s.":"수동태 be + p.p. (was created)",
+ "It tries to use large amounts of information to discover patterns, trends, and insights that are difficult to find with traditional ways of studying statistics.":"try to + 동사원형, to부정사 목적(~하기 위해), 관계대명사 that",
+ "Normally, coaches and managers prefer players who can hit the ball hard and far, for such players tend to hit more home runs and extra-base hits.":"관계대명사 who, 접속사 for(왜냐하면), tend to + 동사원형",
+ "Sabermetrics suggests that players' offensive skills can be better measured by the frequency with which they safely reach base.":"suggest that절, 수동태 can be measured, 전치사+관계대명사 with which",
+ "It does not matter whether this is achieved through hits, walks, or hits by pitch.":"It ~ whether절(가주어), 수동태 is achieved",
+ "Sabermetrics had not been widely used until the Athletics adopted it in 2002.":"과거완료 수동태 had not been used, 접속사 until",
+ "With sabermetrics, the Athletics were able to identify underrated players with significant contributions to winning and built a strong team on a small budget.":"be able to + 동사원형, 과거분사 underrated, build-built",
+ "The success of the Athletics prompted other teams to quickly adopt sabermetrics, sparking a movement to utilize data not only in baseball but also in other sports.":"prompt+목적어+to부정사, 분사구문 sparking, not only A but also B",
+ "Thus, sports data analytics emerged as a systematic approach to predict game outcomes.":"emerge as(~로 등장하다), to부정사(형용사적 용법)",
+ "In soccer, the Liverpool Football Club of the English Premier League is similar to the Oakland Athletics in baseball.":"be similar to(~와 비슷하다)",
+ "In 2010, Liverpool underwent a change in ownership.":"undergo-underwent(겪다)",
+ "While data analysis was already prevailing in the Premier League at that time, the new owner of the club, who also owned a baseball team in the United States, aimed to push data analysis in soccer to new heights.":"접속사 While(~이지만), 관계대명사 who, aim to + 동사원형",
+ "So he demanded that the club form a new data team.":"demand that 주어 (should) 동사원형 — form (원형)",
+ "The new team included a physicist from Cambridge, a nuclear scientist from Harvard, and a former chess champion.":"A, B, and C 병렬구조",
+ "What they had in common was significant expertise in data.":"관계대명사 What(~하는 것), have in common(공통으로 가지다)",
+ "The team started to apply data analysis in key areas of club management, including player recruitment, injury prevention, and strategy during the game.":"start to + 동사원형, including(~을 포함하여)",
+ "The team analyzed large amounts of data to recruit players who fit the team's style of play.":"to부정사 목적, 관계대명사 who",
+ "In training, they collected data on players' movement patterns, heart rates, and vital signs by using GPS trackers and sensors to prevent injuries.":"by + 동명사(~함으로써), to부정사 목적",
+ "During games, they used live data to make tactical decisions such as substitutions and formations.":"to부정사 목적, such as(~와 같은)",
+ "The data team was praised for its efforts when the Liverpool Football Club won the league championship for the first time in 30 years in 2020.":"수동태 was praised, for the first time(처음으로)",
+ "The emergence of sports analytics did not go unnoticed by the Korean sports industry.":"go unnoticed(주목받지 못하다), 부정문 did not",
+ "One notable example of success is the Korean women's curling team.":"주어 + be동사 + 보어",
+ "Following its debut at the Winter Olympic Games of 2014, the team recognized the need to enhance its sweeping technique.":"Following(~ 이후에), the need to + 동사원형",
+ "Sweeping melts the ice and makes the stone move faster.":"make + 목적어 + 동사원형(사역동사), 동명사 주어 Sweeping",
+ "If too much ice melts, however, the stone moves too fast and misses the target.":"조건절 If + 현재시제, too ~ (너무 ~한)",
+ "On the other hand, if not enough ice melts, the stone stops before reaching the target.":"On the other hand(반면에), before + 동명사",
+ "The amount of ice melting depends on the sweeping speed and pressure.":"depend on(~에 달려 있다), 동명사 melting",
+ "Applying too much pressure slows down the sweeping speed, and focusing only on speed makes it hard to transfer enough force to the broom.":"동명사 주어(Applying/focusing), make it hard to부정사",
+ "Finding the right balance between speed and pressure is important to melt the right amount of ice.":"동명사 주어 Finding, between A and B, to부정사 목적",
+ "To identify the most effective technique, the Korean team designed a sweeping measurement device.":"To부정사(~하기 위해, 문두), the most + 최상급",
+ "The device consisted of infrared cameras and sensors attached to the players' bodies, shoes, and brooms.":"consist of(~로 구성되다), 과거분사 attached",
+ "Through the device and motion-capture screens, foot pressure values and other data were obtained for analysis.":"수동태 were obtained",
+ "After monitoring changes in the temperature of the ice surface, the team concluded that speed was more economical than strength for sweeping.":"After + 동명사, conclude that절, 비교급 more ~ than",
+ "The use of data analysis was critical in the team's winning of a silver medal at the 2018 Pyeongchang Winter Olympics.":"be critical in(~에 결정적이다), 동명사 winning",
+ "The successful use of sports analytics was not limited to the curling team.":"be limited to(~에 국한되다), 부정문",
+ "The Korean women's archery team had dominated the sport for decades.":"과거완료 had + p.p.(계속), for decades(수십 년 동안)",
+ "However, the team turned to sports analytics to maintain its edge over its rivals in preparation for the 2020 Tokyo Olympics.":"turn to(~에 의지하다), to부정사 목적, in preparation for(~을 준비하여)",
+ "The team developed a system to monitor players' heart rates by using advanced visual computing technology to convert facial color variations into heart rates.":"to부정사(형용사적), by + 동명사, convert A into B",
+ "This data was used for psychological training to help players maintain stable heart rates during crucial moments.":"수동태 was used, help + 목적어 + (to)동사원형",
+ "The team also created an AI coach that helped adjust shooting form.":"관계대명사 that, help + (to)동사원형",
+ "The team managers requested that the AI coach edit training videos of the players to assist with practical analysis.":"request that 주어 (should) 동사원형 — edit(원형)",
+ "Players and coaches used the edited videos to analyze the players' usual habits or weaknesses.":"과거분사 edited, to부정사 목적",
+ "The active use of data analysis by the Korean women's archery team handed them their ninth Olympic gold medal in a row in Tokyo.":"hand + 사람 + 사물(~에게 …을 안기다), in a row",
+ "There are still limitations to what data analysis can capture in games.":"There are + 복수명사, 관계대명사 what",
+ "Factors such as team chemistry, which is related to how well people get along, will likely remain difficult to measure.":"such as, 관계대명사 which, be related to, remain + 형용사",
+ "Similarly, predicting player performance in a match cannot be entirely accurate as players are humans and not machines.":"동명사 주어 predicting, 접속사 as(~이기 때문에)",
+ "Still, sports analytics is undeniably elevating the level of play across various sports, and fans are enjoying this development.":"현재진행형 is elevating, across(~ 전반에 걸쳐)"
+};
+const WRITE = [];
+PASSAGES.forEach(p=>p.sentences.forEach(s=>{
+  WRITE.push({ ko:s.ko, en:s.en, hint: WRITE_HINTS[s.en] || "본문 문장을 떠올려 어순에 맞게 써 보세요." });
+}));
+
+// 문법 게임 — 본문 핵심 문법 20문제 (고2 기초)
+const GRAMMAR = [
+ {type:"수동태", q:"Sabermetrics ____ in the late 1970s. (세이버메트릭스는 만들어졌다)", opts:["created","was created","creates","is creating"], a:1, exp:"주어가 '만들어지는' 대상 + 과거 → 수동태 <b>was created</b>."},
+ {type:"수동태", q:"foot pressure values and other data ____ for analysis. (데이터가 얻어졌다)", opts:["obtained","were obtained","obtain","are obtaining"], a:1, exp:"복수 주어 + 과거 수동태 → <b>were obtained</b>."},
+ {type:"관계대명사", q:"They prefer players ____ can hit the ball hard. (선수를 선호한다)", opts:["which","who","what","whose"], a:1, exp:"선행사가 사람(players) + 주격 → <b>who</b>."},
+ {type:"관계대명사", q:"the new owner, ____ also owned a baseball team, aimed to push data analysis.", opts:["who","which","what","where"], a:0, exp:"사람 선행사(owner)를 보충 설명하는 주격 관계대명사 <b>who</b>."},
+ {type:"관계대명사 what", q:"____ they had in common was expertise in data. (그들이 공통으로 가진 것)", opts:["That","Which","What","Who"], a:2, exp:"'~하는 것'을 뜻하며 선행사를 포함하는 <b>What</b>."},
+ {type:"to부정사", q:"They collected data ____ injuries. (부상을 예방하기 위해)", opts:["prevent","to prevent","preventing","prevented"], a:1, exp:"'~하기 위해' 목적의 부사적 용법 → <b>to prevent</b>."},
+ {type:"to부정사", q:"The team designed a device ____ the most effective technique. (찾아내기 위해)", opts:["identify","to identify","identifying","identified"], a:1, exp:"목적을 나타내는 to부정사 → <b>to identify</b>."},
+ {type:"동명사", q:"____ the right balance is important. (균형을 찾는 것)", opts:["Find","Finding","Found","To finding"], a:1, exp:"문장의 주어 자리, 동명사 → <b>Finding</b>."},
+ {type:"동명사", q:"Sabermetrics tries to use information by ____ patterns. — 알맞은 형태로 by 다음에 올 것은?", opts:["discover","discovering","to discover","discovered"], a:1, exp:"전치사 by 다음에는 동명사 → <b>discovering</b>."},
+ {type:"사역동사", q:"Sweeping makes the stone ____ faster. (스톤이 더 빨리 움직이게 한다)", opts:["to move","moves","move","moving"], a:2, exp:"사역동사 make + 목적어 + <b>동사원형</b> → move."},
+ {type:"접속사", q:"____ the cookies... 아니, ____ too much ice melts, the stone moves too fast. (~하면)", opts:["If","Because","Although","Unless"], a:0, exp:"조건을 나타내는 접속사 <b>If</b>."},
+ {type:"접속사", q:"____ data analysis was already prevailing, the new owner aimed higher. (~이지만)", opts:["Because","While","If","So"], a:1, exp:"'~인 반면에/~이지만'의 대조 접속사 <b>While</b>."},
+ {type:"접속사 as", q:"Prediction cannot be accurate ____ players are humans. (~이기 때문에)", opts:["as","while","though","unless"], a:0, exp:"이유를 나타내는 <b>as</b>(~ 때문에)."},
+ {type:"demand/request", q:"He demanded that the club ____ a new data team. (구성할 것을 요구했다)", opts:["forms","formed","form","to form"], a:2, exp:"요구·제안 동사 demand that절은 (should) + <b>동사원형</b> → form."},
+ {type:"demand/request", q:"The managers requested that the AI coach ____ the videos.", opts:["edits","edited","edit","editing"], a:2, exp:"request that절도 (should) + <b>동사원형</b> → edit."},
+ {type:"비교급", q:"Speed was more economical ____ strength for sweeping. (힘보다)", opts:["then","than","as","that"], a:1, exp:"비교급 + <b>than</b> (~보다)."},
+ {type:"과거완료", q:"The archery team ____ the sport for decades. (수십 년간 지배해 왔다)", opts:["dominated","has dominated","had dominated","dominates"], a:2, exp:"과거 시점까지의 계속 → 과거완료 <b>had dominated</b>."},
+ {type:"분사", q:"sensors ____ to the players' bodies (몸에 부착된 센서들)", opts:["attach","attaching","attached","to attach"], a:2, exp:"센서가 '부착된' 수동 의미 → 과거분사 <b>attached</b>."},
+ {type:"부정사구문", q:"It does not matter ____ this is achieved through hits or walks. (~인지 아닌지)", opts:["that","whether","which","what"], a:1, exp:"'~인지 아닌지'를 이끄는 <b>whether</b>."},
+ {type:"동사+목적어+to", q:"The success prompted other teams ____ sabermetrics. (도입하도록 촉발했다)", opts:["adopt","to adopt","adopting","adopted"], a:1, exp:"prompt + 목적어 + <b>to부정사</b> → to adopt."}
+];
+
+// 변형문제 — 지문별 5문제
+const VARIANTS = {
+ p1:[
+  {type:"내용일치", q:"윗글의 내용과 일치하지 <u>않는</u> 것은?", opts:["오클랜드 애슬레틱스는 2002년에 20연승을 했다.","애슬레틱스는 자금이 풍부한 큰 팀이었다.","그들의 성공 열쇠는 세이버메트릭스 도입이었다.","세이버메트릭스는 통계 모델이다."], ans:"② — 본문에서 애슬레틱스는 자금이 한정된 작은 팀(a small team with limited funds)이라고 했으므로 불일치."},
+  {type:"빈칸추론", q:"빈칸에 들어갈 말로 가장 적절한 것은?", sentence:"The Oakland Athletics were a small team with limited funds, ____ made it difficult to attract elite players.", opts:["who","which","what","where"], ans:"② which — 앞 문장 전체를 받는 관계대명사."},
+  {type:"어법", q:"밑줄 친 부분을 어법에 맞게 고친 것은?", sentence:"The key to their success was ①adopt sabermetrics, a model ②use for making decisions.", opts:["① adopt → adopting / ② use → used","① adopt → to adopting","② use → using","고칠 것 없음"], ans:"① — 주격보어 자리 동명사 adopting, 명사를 수식하는 과거분사 used. 정답: ①."},
+  {type:"서술형", q:"우리말에 맞게 영작하시오.", sentence:"우리말: 그들은 그것을 어떻게 해냈을까?", opts:null, ans:"How did they do it?"},
+  {type:"제목", q:"윗글의 주제로 가장 적절한 것은?", opts:["야구의 역사","적은 예산으로 성공한 애슬레틱스와 세이버메트릭스","엘리트 선수를 영입하는 방법","메이저리그 우승팀 소개"], ans:"② — 자금이 적은 팀이 통계 모델 도입으로 성공한 이야기."}
+ ],
+ p2:[
+  {type:"내용일치", q:"세이버메트릭스에 대한 설명으로 일치하는 것은?", opts:["1990년대에 만들어졌다.","공을 세게 멀리 치는 능력만 중시한다.","안전하게 출루하는 빈도로 공격력을 측정한다.","애슬레틱스가 도입하기 전부터 널리 쓰였다."], ans:"③ — 출루 빈도(frequency with which they safely reach base)로 공격력을 더 잘 측정한다고 했다."},
+  {type:"빈칸추론", q:"빈칸에 알맞은 것은?", sentence:"It does not matter ____ this is achieved through hits, walks, or hits by pitch.", opts:["that","whether","which","what"], ans:"② whether — '~인지 아닌지'."},
+  {type:"어법", q:"어법상 옳은 문장을 고르시오.", opts:["Sabermetrics was create in the 1970s.","It tries use large amounts of information.","Sabermetrics had not been widely used until 2002.","The success prompted teams adopt it."], ans:"③ — ①was created ②tries to use ④prompted teams to adopt 로 고쳐야 하며, ③만 올바름."},
+  {type:"서술형", q:"우리말에 맞게 영작하시오. (조건: emerge as, to부정사)", sentence:"우리말: 스포츠 데이터 분석은 경기 결과를 예측하는 체계적인 접근법으로 등장했다.", opts:null, ans:"Sports data analytics emerged as a systematic approach to predict game outcomes."},
+  {type:"요지", q:"이 단락의 요지로 가장 적절한 것은?", opts:["전통적 통계가 가장 정확하다.","세이버메트릭스는 데이터로 과소평가된 선수를 찾아 활용을 확산시켰다.","홈런이 가장 중요한 기록이다.","야구에서만 데이터가 쓰인다."], ans:"② — 데이터로 숨은 가치를 찾아내 다른 스포츠로 확산되었다는 내용."}
+ ],
+ p3:[
+  {type:"내용일치", q:"리버풀 FC에 대한 설명으로 일치하지 <u>않는</u> 것은?", opts:["2010년에 소유권 변화를 겪었다.","새 구단주는 미국 야구팀도 소유했다.","새 데이터 팀에 물리학자가 포함됐다.","2020년에 리그 우승에 실패했다."], ans:"④ — 2020년에 30년 만에 리그 우승을 차지했다고 했으므로 불일치."},
+  {type:"빈칸추론", q:"빈칸에 알맞은 것은?", sentence:"So he demanded that the club ____ a new data team.", opts:["forms","formed","form","forming"], ans:"③ form — demand that절은 (should)+동사원형."},
+  {type:"지칭/어법", q:"밑줄 친 What과 쓰임이 같은 것은?", sentence:"What they had in common was significant expertise in data.", opts:["I know what you mean.","What a great idea!","Tell me what you want.","의문사로만 쓰인다."], ans:"③ — '~하는 것'(선행사 포함 관계대명사)으로 쓰인 What. ③의 what이 같은 용법."},
+  {type:"서술형", q:"우리말에 맞게 영작하시오. (조건: by + 동명사)", sentence:"우리말: 그들은 부상을 예방하기 위해 GPS 추적기와 센서를 사용하여 데이터를 수집했다.", opts:null, ans:"They collected data by using GPS trackers and sensors to prevent injuries."},
+  {type:"순서/내용", q:"리버풀 데이터 팀이 한 일이 <u>아닌</u> 것은?", opts:["선수 영입을 위한 데이터 분석","부상 예방을 위한 신체 데이터 수집","경기 중 실시간 데이터로 전술 결정","관중 수입 예측"], ans:"④ — 관중 수입 예측은 본문에 없다. (영입·부상 예방·전술 결정만 언급)"}
+ ],
+ p4:[
+  {type:"내용일치", q:"한국 컬링팀에 대한 설명으로 일치하는 것은?", opts:["2014년 올림픽에서 금메달을 땄다.","스위핑은 얼음을 얼려 스톤을 멈추게 한다.","속도와 압력의 균형이 중요하다.","힘이 속도보다 효율적이라고 결론지었다."], ans:"③ — 속도와 압력의 적절한 균형(the right balance)이 중요하다고 했다."},
+  {type:"빈칸추론", q:"빈칸에 알맞은 것은?", sentence:"Sweeping melts the ice and makes the stone ____ faster.", opts:["to move","moves","move","moving"], ans:"③ move — 사역동사 make + 목적어 + 동사원형."},
+  {type:"어법", q:"밑줄 친 부분 중 어법상 틀린 것은?", sentence:"The device ①consisted of cameras and sensors ②attaching to the players' bodies.", opts:["① consisted → consist","② attaching → attached","둘 다 옳음","① consisted of → consisted in"], ans:"② — 센서가 '부착된' 수동 의미이므로 과거분사 attached."},
+  {type:"서술형", q:"우리말에 맞게 영작하시오. (조건: conclude that, 비교급)", sentence:"우리말: 그 팀은 스위핑에서 속도가 힘보다 더 효율적이라고 결론지었다.", opts:null, ans:"The team concluded that speed was more economical than strength for sweeping."},
+  {type:"세부정보", q:"컬링팀이 데이터 분석으로 얻은 결과는?", opts:["2014년 금메달","2018 평창 올림픽 은메달","2020 도쿄 금메달","2022 베이징 동메달"], ans:"② — 데이터 분석이 2018 평창 동계 올림픽 은메달 획득에 결정적이었다."}
+ ],
+ p5:[
+  {type:"내용일치", q:"한국 양궁팀에 대한 설명으로 일치하지 <u>않는</u> 것은?", opts:["수십 년간 그 종목을 지배해 왔다.","얼굴 색 변화를 심박수로 바꾸는 기술을 썼다.","AI 코치로 슈팅 자세를 조정했다.","데이터를 전혀 사용하지 않았다."], ans:"④ — 양궁팀은 적극적으로 데이터 분석을 활용했으므로 불일치."},
+  {type:"빈칸추론", q:"빈칸에 알맞은 것은?", sentence:"The managers requested that the AI coach ____ training videos of the players.", opts:["edits","edited","edit","to edit"], ans:"③ edit — request that절은 (should)+동사원형."},
+  {type:"어법", q:"밑줄 친 부분의 쓰임이 옳은 것은?", sentence:"①Predicting player performance ②cannot be entirely accurate as players ③are humans.", opts:["① Predicting → Predict","② cannot → can not be","③ are → is","셋 다 옳음"], ans:"④ — 동명사 주어 Predicting, 부정 cannot, 복수 주어 players are 모두 올바름."},
+  {type:"서술형", q:"우리말에 맞게 영작하시오. (조건: be related to, remain + 형용사)", sentence:"우리말: 팀 호흡 같은 요소들은 측정하기 어려운 채로 남을 가능성이 크다.", opts:null, ans:"Factors such as team chemistry will likely remain difficult to measure."},
+  {type:"요지", q:"이 글 전체의 결론으로 가장 적절한 것은?", opts:["데이터 분석은 모든 것을 정확히 예측한다.","데이터 분석에는 한계가 있지만 경기 수준을 높이고 있다.","스포츠에서 데이터는 쓸모가 없다.","팀 호흡은 쉽게 측정된다."], ans:"② — 한계(team chemistry 등)는 있으나 데이터 분석이 경기 수준을 높이고 있다는 결론."}
+ ]
+};
+
+/* ============== TABS ============== */
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('v-'+t.dataset.v).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+
+/* ============== 음성 (원어민 발음) ============== */
+let voicesReady=false, enVoice=null;
+function pickVoice(){
+  const vs=speechSynthesis.getVoices();
+  // 미국/영국 영어 우선
+  enVoice = vs.find(v=>/en-US/i.test(v.lang)) || vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null;
+  voicesReady=true;
+}
+if('speechSynthesis' in window){
+  pickVoice();
+  speechSynthesis.onvoiceschanged=pickVoice;
+}
+function speak(text, btn){
+  if(!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=.9; u.pitch=1;
+  if(enVoice)u.voice=enVoice;
+  if(btn){btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing');u.onerror=()=>btn.classList.remove('playing');}
+  speechSynthesis.speak(u);
+}
+
+/* ============== FLASHCARD · 1차 학습 (분류 + 3회 반복) ============== */
+const flashcard=document.getElementById('flashcard');
+let fcEng2Kor=true, fcFlipped=false;
+let fcRound=1, fcQueue=[], fcIdx=0, fcRoundTotal=0;
+let fcTally={left:0,up:0,right:0};
+// 누적 분류 결과: 단어 index -> 마지막 분류
+const fcStatus={};
+
+document.getElementById('fcDirEK').onclick=()=>{
+  fcEng2Kor=true;
+  document.getElementById('fcDirEK').className='btn gold';
+  document.getElementById('fcDirKE').className='btn ghost';
+};
+document.getElementById('fcDirKE').onclick=()=>{
+  fcEng2Kor=false;
+  document.getElementById('fcDirKE').className='btn gold';
+  document.getElementById('fcDirEK').className='btn ghost';
+};
+
+function fcStartRound(indices){
+  fcQueue=[...indices].sort(()=>Math.random()-.5);
+  fcRoundTotal=fcQueue.length;
+  fcIdx=0;
+  fcTally={left:0,up:0,right:0};
+  document.getElementById('fcIntro').style.display='none';
+  document.getElementById('fcResult').style.display='none';
+  document.getElementById('fcPlay').style.display='block';
+  renderFCCard();
+}
+function renderFCCard(){
+  const wIdx=fcQueue[fcIdx];
+  const pair=VOCAB[wIdx];
+  const term=fcEng2Kor?pair[0]:pair[1];
+  const mean=fcEng2Kor?pair[1]:pair[0];
+  document.getElementById('fcTerm').textContent=term;
+  document.getElementById('fcMean').textContent=mean;
+  document.getElementById('fcLabF').textContent=fcEng2Kor?'ENGLISH':'한글 뜻';
+  document.getElementById('fcRound').textContent=fcRound+'회차 / 3회';
+  document.getElementById('fcCount').textContent=(fcIdx+1)+' / '+fcRoundTotal;
+  document.getElementById('fcTally').textContent=`⬅️ ${fcTally.left} · ⬆️ ${fcTally.up} · ➡️ ${fcTally.right}`;
+  document.getElementById('fcProg').style.width=(fcIdx/fcRoundTotal*100)+'%';
+  fcFlipped=false; flashcard.classList.remove('flipped');
+  flashcard.style.transform=''; flashcard.style.opacity='';
+  document.getElementById('fcDropGuide').style.display='none';
+  document.getElementById('fcDragHint').style.display='none';
+  document.getElementById('fcFlipHint').style.display='block';
+}
+// 카드 클릭(드래그 아님): 뒤집기 + 영어면일 때 발음 + 드래그 안내 노출
+let fcDrag={active:false,moved:false,sx:0,sy:0,dx:0,dy:0};
+function fcShowDropGuide(){
+  document.getElementById('fcDropGuide').style.display='flex';
+  document.getElementById('fcDragHint').style.display='block';
+  document.getElementById('fcFlipHint').style.display='none';
+}
+flashcard.addEventListener('click',()=>{
+  if(fcDrag.moved){fcDrag.moved=false;return;} // 드래그 후의 click 무시
+  fcFlipped=!fcFlipped;
+  // 드래그로 남았을 수 있는 인라인 스타일을 비워, flip 클래스 토글이 항상 시각적으로 반영되게 함
+  flashcard.style.transform='';
+  flashcard.style.opacity='';
+  flashcard.classList.toggle('flipped',fcFlipped);
+  const showingEnglish = fcEng2Kor ? !fcFlipped : fcFlipped;
+  if(showingEnglish) speak(VOCAB[fcQueue[fcIdx]][0], null);
+  if(fcFlipped){
+    fcShowDropGuide();
+  }else{
+    // 다시 앞면으로 뒤집으면 안내 숨김 (자유롭게 여러 번 뒤집기 가능)
+    document.getElementById('fcDropGuide').style.display='none';
+    document.getElementById('fcDragHint').style.display='none';
+    document.getElementById('fcFlipHint').style.display='block';
+  }
+});
+
+// 포인터 드래그 (마우스/터치)
+flashcard.addEventListener('pointerdown',e=>{
+  if(!fcFlipped)return; // 뒤집어 확인한 뒤에만 드래그 분류
+  fcDrag.active=true; fcDrag.moved=false;
+  fcDrag.sx=e.clientX; fcDrag.sy=e.clientY; fcDrag.dx=0; fcDrag.dy=0;
+  flashcard.classList.add('dragging');
+  flashcard.setPointerCapture(e.pointerId);
+});
+flashcard.addEventListener('pointermove',e=>{
+  if(!fcDrag.active)return;
+  fcDrag.dx=e.clientX-fcDrag.sx; fcDrag.dy=e.clientY-fcDrag.sy;
+  if(Math.abs(fcDrag.dx)>6||Math.abs(fcDrag.dy)>6) fcDrag.moved=true;
+  const rot=fcDrag.dx*0.05;
+  // 뒤집힌 상태라 rotateY(180) 유지
+  flashcard.style.transform=`translate(${fcDrag.dx}px,${fcDrag.dy}px) rotate(${rot}deg) rotateY(180deg)`;
+  flashcard.style.opacity = 1 - Math.min(Math.max(Math.abs(fcDrag.dx),Math.abs(fcDrag.dy))/300,0.4);
+  // 핫존 하이라이트
+  const dir=fcDragDir();
+  document.querySelectorAll('.drop-zone').forEach(z=>z.classList.remove('hot'));
+  if(dir) document.querySelector('.drop-zone.'+dir).classList.add('hot');
+});
+function fcDragDir(){
+  const T=70;
+  if(fcDrag.dy < -T && Math.abs(fcDrag.dy)>=Math.abs(fcDrag.dx)) return 'up';
+  if(fcDrag.dx < -T) return 'left';
+  if(fcDrag.dx > T) return 'right';
+  return null;
+}
+function fcEndDrag(){
+  if(!fcDrag.active)return;
+  fcDrag.active=false;
+  flashcard.classList.remove('dragging');
+  document.querySelectorAll('.drop-zone').forEach(z=>z.classList.remove('hot'));
+  const dir=fcDragDir();
+  if(dir){
+    // 날아가는 애니메이션 후 분류
+    flashcard.classList.add('flyout');
+    const fx = dir==='left'?-window.innerWidth : dir==='right'?window.innerWidth : 0;
+    const fy = dir==='up'? -window.innerHeight : 0;
+    flashcard.style.transform=`translate(${fx}px,${fy}px) rotateY(180deg)`;
+    flashcard.style.opacity='0';
+    setTimeout(()=>{ flashcard.classList.remove('flyout'); fcSort(dir); },330);
+  }else{
+    // 원위치 — 거의 안 움직인 '탭'이면 인라인 스타일을 비워 클릭 뒤집기가 정상 동작하도록 함
+    if(fcDrag.moved){
+      flashcard.style.transform=fcFlipped?'rotateY(180deg)':'';
+      flashcard.style.opacity='';
+    }else{
+      flashcard.style.transform='';
+      flashcard.style.opacity='';
+    }
+  }
+}
+flashcard.addEventListener('pointerup',fcEndDrag);
+flashcard.addEventListener('pointercancel',fcEndDrag);
+
+function fcSort(dir){
+  if(!fcFlipped) return; // 뒤집어 확인한 뒤에만 분류
+  const wIdx=fcQueue[fcIdx];
+  fcStatus[wIdx]=dir;
+  fcTally[dir]++;
+  fcIdx++;
+  if(fcIdx<fcRoundTotal){ renderFCCard(); }
+  else { fcShowResult(); }
+}
+
+function fcShowResult(){
+  document.getElementById('fcPlay').style.display='none';
+  const res=document.getElementById('fcResult');
+  res.style.display='block';
+  // 다음 라운드 대상: 이번 라운드에서 왼쪽/위쪽으로 분류된 단어들 (모르거나 느린 단어)
+  const review=fcQueue.filter(i=>fcStatus[i]==='left'||fcStatus[i]==='up');
+  const mastered=fcRoundTotal-review.length;
+  let body=`<div class="fc-result-card"><span class="pill">${fcRound}회차 완료</span>
+    <h3>${fcRound<3?fcRound+'회차 결과':'🏆 3회 반복 완료!'}</h3>
+    <div class="fc-stat">
+      <div class="box r"><b>${fcTally.right}</b><span>➡️ 바로 떠오름</span></div>
+      <div class="box u"><b>${fcTally.up}</b><span>⬆️ 잠시 후</span></div>
+      <div class="box l"><b>${fcTally.left}</b><span>⬅️ 모름</span></div>
+    </div>`;
+  if(fcRound<3){
+    if(review.length>0){
+      body+=`<p style="color:var(--muted);margin-bottom:16px">바로 떠오른 <b style="color:var(--ok)">${mastered}개</b>는 통과! 더 익혀야 할 <b style="color:var(--gold)">${review.length}개</b>를 ${fcRound+1}회차에서 다시 학습합니다.</p>
+        <button class="btn gold" id="fcNextRound">▶️ ${fcRound+1}회차 시작 (${review.length}단어)</button>`;
+    }else{
+      body+=`<p style="color:var(--ok);font-weight:700;margin-bottom:16px">모든 단어가 바로 떠올랐습니다! 🎉</p>
+        <button class="btn mint" id="fcRestart">🔁 처음부터 다시</button>`;
+    }
+  }else{
+    body+=`<p style="color:var(--muted);margin-bottom:16px">3회 반복 학습을 마쳤습니다. 아래 단어 목록으로 마무리 복습을 하거나, 처음부터 다시 시작할 수 있습니다.</p>
+      <button class="btn mint" id="fcRestart">🔁 전체 단어로 다시 시작</button>`;
+  }
+  body+=`</div>`;
+  res.innerHTML=body;
+  const nr=document.getElementById('fcNextRound');
+  if(nr) nr.onclick=()=>{ fcRound++; fcStartRound(review); res.scrollIntoView({behavior:'smooth',block:'start'}); };
+  const rs=document.getElementById('fcRestart');
+  if(rs) rs.onclick=()=>{ fcRound=1; for(const k in fcStatus)delete fcStatus[k]; fcStartRound(VOCAB.map((v,i)=>i)); };
+}
+
+document.getElementById('fcBegin').onclick=()=>{ fcRound=1; for(const k in fcStatus)delete fcStatus[k]; fcStartRound(VOCAB.map((v,i)=>i)); };
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('v-vocab').classList.contains('active'))return;
+  if(document.getElementById('fcPlay').style.display==='none')return;
+  if(e.code==='Space'){e.preventDefault();flashcard.click();}
+  if(e.code==='ArrowLeft'){e.preventDefault();fcSort('left');}
+  if(e.code==='ArrowUp'){e.preventDefault();fcSort('up');}
+  if(e.code==='ArrowRight'){e.preventDefault();fcSort('right');}
+});
+
+// list — 영단어를 클릭하면 발음
+document.getElementById('fcList').innerHTML=VOCAB.map(v=>`<div class="fc-li"><b class="sp" data-w="${v[0].replace(/"/g,'')}" title="클릭하면 발음">${v[0]}</b><span>${v[1]}</span></div>`).join('');
+document.querySelectorAll('#fcList .sp').forEach(s=>s.onclick=()=>speak(s.dataset.w, null));
+
+/* ============== 직독직해 ============== */
+let ddCur=0, ddMode='en2ko';
+const ddPick=document.getElementById('ddPick');
+ddPick.innerHTML=`<button class="pp" data-i="all">📚 전체 본문</button>`+PASSAGES.map((p,i)=>`<button class="pp ${i===0?'active':''}" data-i="${i}">${p.name}</button>`).join('');
+function renderDD(){
+  const body=document.getElementById('ddBody');
+  if(ddCur==='all'){
+    // 전체 본문: 5단락 모든 문장을 단락 제목과 함께 이어서 렌더
+    body.innerHTML=PASSAGES.map(p=>
+      `<div class="dd-para-title">${p.name} · ${p.title}</div>`+
+      p.sentences.map((s,si)=>ddSentMarkup(p,s,si)).join('')
+    ).join('');
+    PASSAGES.forEach(p=>{
+      // 각 단락 영역의 문장 노드에 해당 단락(p)으로 바인딩
+      // dd-sent는 단락 구분 없이 순서대로 있으므로, 단락별 문장 수만큼 끊어서 바인딩
+    });
+    // 단락 경계에 맞춰 바인딩: 전체 노드를 단락 순서대로 매핑
+    const nodes=[...body.querySelectorAll('.dd-sent')];
+    let idx=0;
+    PASSAGES.forEach(p=>{ p.sentences.forEach(()=>{ ddBindSent(p, nodes[idx]); idx++; }); });
+    return;
+  }
+  const p=PASSAGES[ddCur];
+  body.innerHTML=p.sentences.map((s,si)=>ddSentMarkup(p,s,si)).join('');
+  body.querySelectorAll('.dd-sent').forEach(node=>ddBindSent(p,node));
+}
+// 한 문장의 HTML 생성
+function ddSentMarkup(p,s,si){
+  const rows=s.chunks.map((c,ci)=>{
+    let enCell, koCell;
+    if(ddMode==='all'){
+      enCell=`<div class="dd-cell en revealed" data-speak="${si}-${ci}" title="클릭하면 발음">${c[0]}</div>`;
+      koCell=`<div class="dd-cell ko revealed">${c[1]}</div>`;
+    }else if(ddMode==='en2ko'){
+      enCell=`<div class="dd-cell en revealed" data-speak="${si}-${ci}" title="클릭하면 발음">${c[0]}</div>`;
+      koCell=`<div class="dd-cell ko" data-reveal="${si}-${ci}-ko"><span class="masked">👆 해석 보기</span></div>`;
+    }else{ // ko2en
+      enCell=`<div class="dd-cell en" data-reveal="${si}-${ci}-en"><span class="masked">👆 영어 보기</span></div>`;
+      koCell=`<div class="dd-cell ko revealed">${c[1]}</div>`;
+    }
+    return `<div class="dd-chunk-row">${enCell}<div class="dd-slash">/</div>${koCell}</div>`;
+  }).join('');
+  return `<div class="dd-sent" data-sent="${si}"><div class="num">문장 ${si+1}<button class="dd-redo" data-redo="${si}" title="이 문장 다시 하기">↻ 다시</button></div>
+      <div class="dd-full-en" data-speak-full="${si}" title="클릭하면 발음">${s.en}</div>
+      <div class="dd-full-ko">${s.ko}</div>
+      ${rows}</div>`;
+}
+// 한 문장 노드의 이벤트 바인딩
+function ddBindSent(p,node){
+  // 가려진 칸 클릭 → 공개 (영어면 공개 후 발음)
+  node.querySelectorAll('.dd-cell[data-reveal]').forEach(cell=>{
+    cell.onclick=()=>{
+      const [si,ci,kind]=cell.dataset.reveal.split('-');
+      const c=p.sentences[si].chunks[ci];
+      cell.textContent = kind==='ko'? c[1] : c[0];
+      cell.classList.add('revealed');
+      cell.removeAttribute('data-reveal');
+      if(kind==='en'){ cell.setAttribute('data-speak',si+'-'+ci); cell.setAttribute('title','클릭하면 발음'); speak(c[0],null); cell.onclick=()=>speak(p.sentences[si].chunks[ci][0],null); }
+    };
+  });
+  // 표시된 영어 의미단위 클릭 → 발음
+  node.querySelectorAll('.dd-cell.en[data-speak]').forEach(cell=>{
+    cell.onclick=()=>{const [si,ci]=cell.dataset.speak.split('-');speak(p.sentences[si].chunks[ci][0],null);};
+  });
+  // 전체 영문 클릭 → 문장 발음
+  node.querySelectorAll('.dd-full-en[data-speak-full]').forEach(el=>{
+    el.onclick=()=>speak(p.sentences[el.dataset.speakFull].en, null);
+  });
+  // 다시 하기 → 이 문장만 초기화
+  const redo=node.querySelector('.dd-redo');
+  if(redo) redo.onclick=()=>{
+    const si=+redo.dataset.redo;
+    const fresh=document.createElement('div');
+    fresh.innerHTML=ddSentMarkup(p,p.sentences[si],si);
+    const newNode=fresh.firstElementChild;
+    node.replaceWith(newNode);
+    ddBindSent(p,newNode);
+  };
+}
+ddPick.querySelectorAll('.pp').forEach(b=>b.onclick=()=>{
+  ddPick.querySelectorAll('.pp').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  ddCur = (b.dataset.i==='all') ? 'all' : +b.dataset.i;
+  renderDD();
+});
+document.querySelectorAll('[data-ddm]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('[data-ddm]').forEach(x=>{x.classList.remove('violet');x.classList.add('ghost');});
+  b.classList.remove('ghost');b.classList.add('violet');
+  ddMode=b.dataset.ddm;
+  const leg=document.getElementById('ddLegend');
+  leg.innerHTML = ddMode==='en2ko'?'💡 영어를 보고 해석을 떠올린 뒤, 오른쪽 가려진 칸을 클릭해 확인하세요. 영어를 클릭하면 발음이 나옵니다. 🔊':
+                  ddMode==='ko2en'?'💡 해석을 보고 영어를 떠올린 뒤, 왼쪽 가려진 칸을 클릭하면 영어가 나타나며 발음됩니다. 🔊':
+                  '💡 영어와 해석이 모두 표시됩니다. 영어 문장이나 의미 단위를 클릭하면 발음이 나옵니다. 🔊';
+  renderDD();
+});
+renderDD();
+
+/* ============== 영작 ============== */
+let wrCur=0, wrMode='scramble';
+const wrPick=document.getElementById('wrPick');
+// group WRITE by 4 (matches 4 passages roughly) -> show all together but allow mode
+wrPick.style.display='none';
+document.querySelectorAll('[data-wm]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('[data-wm]').forEach(x=>{x.classList.remove('gold');x.classList.add('ghost');});
+  b.classList.remove('ghost');b.classList.add('gold');
+  wrMode=b.dataset.wm;renderWrite();
+});
+function scrambleWords(s){return s.replace(/\.$/,'').split(' ').sort(()=>Math.random()-.5);}
+// 채점용 정규화 (대소문자/문장부호/공백 무시한 비교 토큰)
+function wrNorm(s){return s.toLowerCase().replace(/[.,:!?'"]/g,'').replace(/\s+/g,' ').trim();}
+// 사용자 답과 정답을 단어 단위로 비교해 diff HTML 생성
+function wrDiff(userText, answer){
+  const u=userText.trim().split(/\s+/).filter(Boolean);
+  const a=answer.replace(/\.$/,'').split(/\s+/);
+  const out=[];
+  for(let k=0;k<Math.max(u.length,a.length);k++){
+    const uw=u[k], aw=a[k];
+    if(uw===undefined){ out.push(`<span class="d-miss">[${aw}]</span>`); continue; }
+    if(aw===undefined){ out.push(`<span class="d-extra">${uw}</span>`); continue; }
+    if(wrNorm(uw)===wrNorm(aw)) out.push(`<span class="d-ok">${uw}</span>`);
+    else out.push(`<span class="d-wrong">${uw}<sub>→${aw}</sub></span>`);
+  }
+  return out.join(' ');
+}
+function renderWrite(){
+  const body=document.getElementById('wrBody');
+  body.innerHTML=WRITE.map((w,i)=>{
+    if(wrMode==='type'){
+      return `<div class="wr-item"><div class="wr-ko">${i+1}. ${w.ko}</div>
+        <textarea id="wr${i}" placeholder="여기에 영어로 작성하세요..."></textarea>
+        <div class="row" style="margin-top:8px"><button class="btn mint" data-grade="${i}">채점</button><button class="btn ghost" onclick="document.getElementById('wa${i}').classList.add('show')">정답 확인</button><button class="btn ghost" data-wredo="${i}">↻ 다시</button></div>
+        <div class="wr-result" id="wres${i}"></div>
+        <div class="wr-ans" id="wa${i}">✅ ${w.en}</div></div>`;
+    }else if(wrMode==='hint'){
+      return `<div class="wr-item"><div class="wr-ko">${i+1}. ${w.ko}</div>
+        <div class="wr-hint">💡 ${w.hint}</div>
+        <textarea id="wr${i}" placeholder="힌트를 참고해 작성하세요..."></textarea>
+        <div class="row" style="margin-top:8px"><button class="btn mint" data-grade="${i}">채점</button><button class="btn ghost" onclick="document.getElementById('wa${i}').classList.add('show')">정답 확인</button><button class="btn ghost" data-wredo="${i}">↻ 다시</button></div>
+        <div class="wr-result" id="wres${i}"></div>
+        <div class="wr-ans" id="wa${i}">✅ ${w.en}</div></div>`;
+    }else{ // scramble
+      const words=scrambleWords(w.en);
+      return `<div class="wr-item"><div class="wr-ko">${i+1}. ${w.ko}</div>
+        <div class="scr-slot" id="slot${i}"></div>
+        <div class="scr-bank" id="bank${i}">${words.map(x=>`<span class="word">${x}</span>`).join('')}</div>
+        <div class="scr-check row"><button class="btn mint" data-ck="${i}">확인</button>
+        <button class="btn ghost" onclick="document.getElementById('wa${i}').classList.add('show')">정답</button>
+        <button class="btn ghost" data-wredo="${i}">↻ 다시</button>
+        <span id="msg${i}" style="font-weight:700"></span></div>
+        <div class="wr-result" id="wres${i}"></div>
+        <div class="wr-ans" id="wa${i}">✅ ${w.en}</div></div>`;
+    }
+  }).join('');
+  if(wrMode==='scramble'){
+    WRITE.forEach((w,i)=>{
+      const slot=document.getElementById('slot'+i), bank=document.getElementById('bank'+i);
+      bank.querySelectorAll('.word').forEach(wd=>wd.onclick=()=>slot.appendChild(wd));
+      slot.onclick=e=>{if(e.target.classList.contains('word'))bank.appendChild(e.target);};
+    });
+    document.querySelectorAll('[data-ck]').forEach(btn=>btn.onclick=()=>{
+      const i=+btn.dataset.ck;
+      const built=[...document.getElementById('slot'+i).querySelectorAll('.word')].map(x=>x.textContent).join(' ');
+      const target=WRITE[i].en.replace(/\.$/,'');
+      const msg=document.getElementById('msg'+i);
+      if(built===target){msg.textContent='🎉 정답!';msg.style.color='var(--ok)';document.getElementById('slot'+i).classList.add('correct-flash');document.getElementById('wres'+i).innerHTML='';}
+      else{
+        msg.textContent='다시 시도';msg.style.color='var(--bad)';
+        // 틀린 부분 비교 표시
+        document.getElementById('wres'+i).innerHTML=`<div class="wr-diff-box"><div class="wr-diff-row"><b>내 답:</b> ${wrDiff(built,WRITE[i].en)}</div><div class="wr-diff-row"><b>정답:</b> <span class="d-answer">${WRITE[i].en}</span></div></div>`;
+      }
+    });
+  }
+  // type/hint 채점
+  document.querySelectorAll('[data-grade]').forEach(btn=>btn.onclick=()=>{
+    const i=+btn.dataset.grade;
+    const built=document.getElementById('wr'+i).value;
+    const res=document.getElementById('wres'+i);
+    if(!built.trim()){res.innerHTML='<div class="wr-diff-box" style="color:var(--muted)">먼저 영어 문장을 입력하세요.</div>';return;}
+    if(wrNorm(built)===wrNorm(WRITE[i].en)){
+      res.innerHTML='<div class="wr-diff-box" style="color:var(--ok);font-weight:700">🎉 정답입니다!</div>';
+    }else{
+      res.innerHTML=`<div class="wr-diff-box"><div class="wr-diff-row"><b>내 답:</b> ${wrDiff(built,WRITE[i].en)}</div><div class="wr-diff-row"><b>정답:</b> <span class="d-answer">${WRITE[i].en}</span></div></div>`;
+    }
+  });
+  // 공통 다시 하기 (해당 문항 입력/결과 초기화)
+  document.querySelectorAll('[data-wredo]').forEach(btn=>btn.onclick=()=>{
+    const i=+btn.dataset.wredo;
+    const res=document.getElementById('wres'+i); if(res)res.innerHTML='';
+    const ans=document.getElementById('wa'+i); if(ans)ans.classList.remove('show');
+    if(wrMode==='scramble'){
+      const slot=document.getElementById('slot'+i), bank=document.getElementById('bank'+i), msg=document.getElementById('msg'+i);
+      slot.classList.remove('correct-flash');
+      if(msg)msg.textContent='';
+      // 슬롯의 단어를 다시 섞어 bank로 되돌림
+      [...slot.querySelectorAll('.word')].forEach(wd=>bank.appendChild(wd));
+      const shuffled=[...bank.querySelectorAll('.word')].sort(()=>Math.random()-.5);
+      shuffled.forEach(wd=>bank.appendChild(wd));
+    }else{
+      const ta=document.getElementById('wr'+i); if(ta)ta.value='';
+    }
+  });
+}
+renderWrite();
+
+/* ============== 문법 게임 ============== */
+document.getElementById('gramTotal').textContent=GRAMMAR.length;
+let gOrder=[], gIdx=0, gScore=0, gStreak=0, gWrong=[];
+function startGram(){
+  gOrder=[...GRAMMAR.keys()].sort(()=>Math.random()-.5);
+  gIdx=0;gScore=0;gStreak=0;gWrong=[];
+  document.getElementById('gramHome').style.display='none';
+  document.getElementById('gramPlay').style.display='block';
+  showGramQ();
+}
+document.getElementById('gramStart').onclick=startGram;
+document.getElementById('gramByType').onclick=()=>{
+  document.getElementById('gramHome').style.display='none';
+  document.getElementById('gramPlay').style.display='block';
+  document.getElementById('gramQ').innerHTML=GRAMMAR.map(g=>`<div class="gm-q"><div class="gm-tag">${g.type}</div><div class="qt">${g.q}</div><div class="gm-exp show">정답: <b>${g.opts[g.a]}</b> — ${g.exp}</div></div>`).join('');
+  document.getElementById('gramNext').style.display='none';
+  document.querySelector('.gm-score').style.display='none';
+};
+function showGramQ(){
+  document.querySelector('.gm-score').style.display='flex';
+  const g=GRAMMAR[gOrder[gIdx]];
+  document.getElementById('gsScore').textContent=gScore;
+  document.getElementById('gsStreak').textContent=gStreak;
+  document.getElementById('gsNum').textContent=(gIdx+1)+'/'+GRAMMAR.length;
+  document.getElementById('gramNext').style.display='none';
+  document.getElementById('gramQ').innerHTML=
+   `<div class="gm-q"><div class="gm-tag">${g.type}</div><div class="qt">${g.q}</div>
+    <div id="gOpts">${g.opts.map((o,i)=>`<button class="opt" data-i="${i}">${String.fromCharCode(9312+i)} ${o}</button>`).join('')}</div>
+    <div class="gm-exp" id="gExp"></div></div>`;
+  document.querySelectorAll('#gOpts .opt').forEach(o=>o.onclick=()=>{
+    const pick=+o.dataset.i;const correct=g.a;
+    document.querySelectorAll('#gOpts .opt').forEach(x=>{x.disabled=true;
+      if(+x.dataset.i===correct)x.classList.add('correct');});
+    if(pick===correct){o.classList.add('correct');gScore+=10;gStreak++;if(gStreak>=3)gScore+=5;}
+    else{o.classList.add('wrong');gStreak=0;gWrong.push(gOrder[gIdx]);}
+    document.getElementById('gsScore').textContent=gScore;
+    document.getElementById('gsStreak').textContent=gStreak;
+    const exp=document.getElementById('gExp');exp.classList.add('show');
+    exp.innerHTML=(pick===correct?'✅ 정답! ':'❌ 정답: <b>'+g.opts[correct]+'</b><br>')+g.exp;
+    document.getElementById('gramNext').style.display='inline-block';
+  });
+}
+document.getElementById('gramNext').onclick=()=>{
+  gIdx++;
+  if(gIdx<GRAMMAR.length){showGramQ();}
+  else{showGramResult();}
+};
+function showGramResult(){
+  const pct=Math.round(gScore/(GRAMMAR.length*10)*100);
+  let msg=pct>=90?'완벽해요! 시험 준비 끝 🏆':pct>=70?'잘했어요! 조금만 더 💪':'복습이 필요해요 📚';
+  document.getElementById('gramQ').innerHTML=
+   `<div class="gm-result"><div class="gm-tag">RESULT</div><h3>${msg}</h3>
+    <div class="big">${gScore}점</div>
+    <p style="color:var(--muted);margin-top:8px">정답률 ${pct}% · 틀린 문제 ${gWrong.length}개</p>
+    <div class="row" style="justify-content:center;margin-top:18px">
+      <button class="btn violet" onclick="startGramAgain()">다시 풀기</button>
+      ${gWrong.length?'<button class="btn gold" onclick="reviewWrong()">틀린 문제 복습</button>':''}
+    </div></div>`;
+  document.getElementById('gramNext').style.display='none';
+}
+window.startGramAgain=startGram;
+window.reviewWrong=()=>{
+  document.querySelector('.gm-score').style.display='none';
+  document.getElementById('gramQ').innerHTML='<div class="gm-tag" style="margin-bottom:12px">틀린 문제 복습</div>'+
+   gWrong.map(idx=>{const g=GRAMMAR[idx];return `<div class="gm-q"><div class="gm-tag">${g.type}</div><div class="qt">${g.q}</div><div class="gm-exp show">정답: <b>${g.opts[g.a]}</b> — ${g.exp}</div></div>`;}).join('');
+  document.getElementById('gramNext').style.display='none';
+};
+
+/* ============== 변형문제 ============== */
+let vtCur='p1';
+const vtPick=document.getElementById('vtPick');
+vtPick.innerHTML=PASSAGES.map((p,i)=>`<button class="pp ${i===0?'active':''}" data-id="${p.id}">${p.name}</button>`).join('');
+function renderVT(){
+  const p=PASSAGES.find(x=>x.id===vtCur);
+  const list=VARIANTS[vtCur];
+  let html=`<div class="vt-passage-box"><div class="vt-passage-title">📖 [${p.title}] 다음 글을 읽고 물음에 답하시오.</div><div class="vt-passage-full">${p.full}</div></div>`;
+  html+=list.map((v,i)=>{
+    let opts='';
+    if(v.opts) opts='<div class="vt-opts">'+v.opts.map((o,j)=>`<div class="vt-opt">${String.fromCharCode(9312+j)} ${o}</div>`).join('')+'</div>';
+    const sentence = v.sentence?`<div class="vt-sentence">${v.sentence}</div>`:'';
+    return `<div class="vt-q"><div class="num">Q${i+1}</div><div class="type">${v.type}</div>
+      <div class="q">${v.q}</div>
+      ${sentence}
+      ${opts}
+      <button class="btn ghost vt-ans-btn" onclick="document.getElementById('vt-${vtCur}-${i}').classList.toggle('show')">정답·해설 보기</button>
+      <div class="vt-ans" id="vt-${vtCur}-${i}">${v.ans}</div></div>`;
+  }).join('');
+  document.getElementById('vtBody').innerHTML=html;
+}
+vtPick.querySelectorAll('.pp').forEach(b=>b.onclick=()=>{
+  vtPick.querySelectorAll('.pp').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');vtCur=b.dataset.id;renderVT();
+});
+renderVT();
+</script>
+</body>
+</html>
